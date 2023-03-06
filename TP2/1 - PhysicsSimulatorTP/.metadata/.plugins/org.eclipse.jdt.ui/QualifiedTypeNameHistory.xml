@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="simulator.model.Body"/>
+    <fullyQualifiedTypeName name="simulator.model.StationaryBody"/>
+    <fullyQualifiedTypeName name="simulator.model.ForceLaws"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="simulator.misc.Vector2D"/>
+    <fullyQualifiedTypeName name="simulator.model.MovingBody"/>
+    <fullyQualifiedTypeName name="simulator.factories.MovingBodyBuilder"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,20 @@
+package simulator.factories;
+
+import org.json.JSONObject;
+
+import simulator.model.Body;
+
+public class MovingBodyBuilder extends Builder<Body> {
+
+	public MovingBodyBuilder() {
+		super("mb", "Moving body");
+		
+	}
+
+	@Override
+	protected Body createInstance(JSONObject data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

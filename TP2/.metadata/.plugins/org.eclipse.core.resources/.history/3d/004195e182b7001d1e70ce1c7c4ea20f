@@ -1,0 +1,15 @@
+package simulator.model;
+
+import java.util.List;
+
+public class BodiesGroup {
+
+	private String id;
+    private ForceLaws forceLaws;
+    private List<Body> bodies;
+    
+	public BodiesGroup(String id, ForceLaws forceLaws) {
+		
+	}
+
+}

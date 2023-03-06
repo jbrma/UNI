@@ -1,0 +1,22 @@
+INDEX VERSION 1.131+C:\Users\jorge\Documents\Uni\TP2\1 - PhysicsSimulatorTP\.metadata\.plugins\org.eclipse.jdt.core
+2481183387.index
+3510443067.index
+2865688460.index
+895017243.index
+939066665.index
+2102866664.index
+2917226401.index
+3855557847.index
+438290310.index
+4049567237.index
+3866865853.index
+1266644166.index
+2767608278.index
+462274551.index
+2611268526.index
+164832421.index
+2850111804.index
+2105826204.index
+117525790.index
+1865797976.index
+421155719.index

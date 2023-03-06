@@ -1,0 +1,20 @@
+package simulator.factories;
+
+import org.json.JSONObject;
+
+import simulator.model.Body;
+
+public class StationaryBodyBuilder extends Builder<Body> {
+
+	public StationaryBodyBuilder() {
+		super("sbb", "Stationary Body Builder");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected Body createInstance(JSONObject data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,11 @@
+Web server www.lab.ser
+
+Secure connection from 192.168.1.2
+
+Server Id: /C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=www.lab.ser
+Signing CA: /C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=CA
+
+Client verified successfully.
+
+Client Id: /C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=usuario
+Signing CA: /C=AU/ST=Some-State/O=Internet Widgits Pty Ltd/CN=CA

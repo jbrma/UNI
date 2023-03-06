@@ -1,0 +1,6 @@
+1) TLSv1.1 Record Layer: Handshake Protocol: Client Hello
+2) Cipher Suites: 14
+3) TLSv1.1 Record Layer: Handshake Protocol: Server Hello
+4) Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (0xc013)
+5) signature (shaWithRSAEncryption)
+6) Pubkey Length: 65 (pubkey: 04b08f58ae7362e2df7846693a1854d58122669c3bb84b85...)

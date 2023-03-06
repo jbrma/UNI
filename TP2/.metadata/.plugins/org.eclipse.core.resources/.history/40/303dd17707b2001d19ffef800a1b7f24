@@ -1,0 +1,28 @@
+package simulator.model;
+
+import java.util.List;
+
+import simulator.misc.*;
+
+public class MovingTowardsFixedPoint implements ForceLaws{
+
+	
+	public MovingTowardsFixedPoint(Vector2D c, Double g) {
+		
+		if( c == null || g < 0) {
+			throw new IllegalArgumentException("c value is null");
+		}
+		if(g < 0) {
+			throw new IllegalArgumentException("g value is non-positive");
+		}
+		
+		
+	}
+	
+	@Override
+	public void apply(List<Body> bs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

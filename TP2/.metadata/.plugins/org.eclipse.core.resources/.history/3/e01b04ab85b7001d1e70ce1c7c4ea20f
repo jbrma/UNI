@@ -1,0 +1,9 @@
+package simulator.model;
+
+public class PhysicsSimulator {
+
+	public PhysicsSimulator(ForceLaws forcelaws, double d) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

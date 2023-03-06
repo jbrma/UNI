@@ -1,0 +1,64 @@
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Clave secreta disponible.
+
+pub  2048R/C04CA80D  creado: 2023-02-23  caduca: nunca       uso: SC  
+                     confianza: absoluta      validez: absoluta
+sub  2048R/C7790C77  creado: 2023-02-23  caduca: nunca       uso: E   
+[  absoluta ] (1). user1
+
+
+
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Clave secreta disponible.
+
+pub  2048R/C6270FFC  creado: 2023-02-23  caduca: nunca       uso: SC  
+                     confianza: dudosa        validez: total
+sub  2048R/8A37444A  creado: 2023-02-23  caduca: nunca       uso: E   
+[   total   ] (1). user2
+
+
+
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Clave secreta disponible.
+
+pub  2048R/3EFB3BC8  creado: 2023-02-23  caduca: nunca       uso: SC  
+                     confianza: no definido   validez: dudosa
+sub  2048R/783F3955  creado: 2023-02-23  caduca: nunca       uso: E   
+[   dudosa  ] (1). user3
+
+
+
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Clave secreta disponible.
+
+pub  2048R/F37D8A76  creado: 2023-02-23  caduca: nunca       uso: SC  
+                     confianza: dudosa        validez: total
+sub  2048R/1A588264  creado: 2023-02-23  caduca: nunca       uso: E   
+[   total   ] (1). user4
+
+
+
+
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Clave secreta disponible.
+
+pub  2048R/6DDA772C  creado: 2023-02-23  caduca: nunca       uso: SC  
+                     confianza: absoluta      validez: absoluta
+sub  2048R/3518F535  creado: 2023-02-23  caduca: nunca       uso: E   
+[  absoluta ] (1). user5
+

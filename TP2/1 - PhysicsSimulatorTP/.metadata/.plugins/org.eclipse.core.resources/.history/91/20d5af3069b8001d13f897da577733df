@@ -1,0 +1,15 @@
+package simulator.model;
+
+import simulator.misc.Vector2D;
+
+public class StationaryBody extends Body{
+
+	public StationaryBody(String _id, String _gid, Vector2D _p, Double _m) {
+		super(_id, _gid, new Vector2D(), _p, _m);
+	}
+
+	@Override
+	void advance(double dt) {
+		// No hace nada
+	}
+}

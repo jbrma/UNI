@@ -1,0 +1,38 @@
+package simulator.model;
+
+import java.util.List;
+
+import simulator.misc.*;
+
+public class MovingTowardsFixedPoint implements ForceLaws{
+
+	private Double g;
+	private Vector2D c;
+	
+	public MovingTowardsFixedPoint(Vector2D c, Double g) {
+		
+		if( c == null || g < 0) {
+			throw new IllegalArgumentException("c value is null");
+		}
+		if(g < 0) {
+			throw new IllegalArgumentException("g value is non-positive");
+		}
+		this.c = c;
+		this.g = g;
+	}
+	
+	@Override
+	public void apply(List<Body> bs) {
+		
+		Vector2D dir = new Vector2D(); // Direccion auxiliar c - pi
+		
+		for(int i = 0; i < bs.size(); i++) {
+			
+			 dir = this.c.minus(bs.get(i).getPosition());
+			
+			 bs.get(i).addForce(dir.scale(bs.get(i).getMass() * this.g));
+		}
+		
+	}
+
+}
