@@ -1,0 +1,32 @@
+220 debian ESMTP Postfix (Debian/GNU)
+EHLO host1.lab.ser
+250-debian
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 DSN
+MAIL FROM:<ana@mailserver.lab.ser> SIZE=418
+250 2.1.0 Ok
+RCPT TO:<benito@mailserver.lab.ser>
+250 2.1.5 Ok
+DATA
+354 End data with <CR><LF>.<CR><LF>
+To: benito@mailserver.lab.ser
+From: Ana Gil Molina <ana@mailserver.lab.ser>
+Subject: Hola
+Message-ID: <6405D86F.1030903@mailserver.lab.ser>
+Date: Mon, 6 Mar 2023 13:11:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Icedove/38.7.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hola, te mando un correo electr..nico.
+.
+250 2.0.0 Ok: queued as BDBEC20E8A
+QUIT
+221 2.0.0 Bye

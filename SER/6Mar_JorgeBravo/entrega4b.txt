@@ -1,0 +1,29 @@
+DONE
+50 OK Idle completed.
+51 noop
+51 OK NOOP completed.
+52 UID fetch 3:* (FLAGS)
+* 2 FETCH (UID 2 FLAGS ())
+52 OK Fetch completed.
+53 IDLE
++ idling
+* OK Still here
+DONE
+53 OK Idle completed.
+54 noop
+54 OK NOOP completed.
+55 UID fetch 3:* (FLAGS)
+* 2 FETCH (UID 2 FLAGS ())
+55 OK Fetch completed.
+56 IDLE
++ idling
+* OK Still here
+DONE
+56 OK Idle completed.
+57 noop
+57 OK NOOP completed.
+58 UID fetch 3:* (FLAGS)
+* 2 FETCH (UID 2 FLAGS ())
+58 OK Fetch completed.
+59 IDLE
++ idling

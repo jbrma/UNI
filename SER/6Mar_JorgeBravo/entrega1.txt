@@ -1,0 +1,16 @@
+MAIL FROM:<benito@mailserver.lab.ser>
+250 2.1.0 Ok
+HELO mailserver.lab.ser
+MAIL FROM:<benito@mailserver.lab.ser>
+RCPT TO:<ana@mailserver.lab.ser>
+DATA
+Hola Ana.
+Soy Benito, un saludo.
+.
+QUIT
+250 debian
+250 2.1.0 Ok
+250 2.1.5 Ok
+354 End data with <CR><LF>.<CR><LF>
+250 2.0.0 Ok: queued as 6BC9920E69
+221 2.0.0 Bye

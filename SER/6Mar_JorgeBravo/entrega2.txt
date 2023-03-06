@@ -1,0 +1,18 @@
+a LOGIN ana ana
+a OK [CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ID ENABLE IDLE SORT SORT=DISPLAY THREAD=REFERENCES THREAD=REFS MULTIAPPEND UNSELECT CHILDREN NAMESPACE UIDPLUS LIST-EXTENDED I18NLEVEL=1 CONDSTORE QRESYNC ESEARCH ESORT SEARCHRES WITHIN CONTEXT=SEARCH LIST-STATUS SPECIAL-USE] Logged in
+a LIST "" *
+* LIST (\HasNoChildren) "/" "INBOX"
+a OK List completed.
+a EXAMINE inbox
+* FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+* OK [PERMANENTFLAGS ()] Read-only mailbox.
+* 0 EXISTS
+* 0 RECENT
+* OK [UIDVALIDITY 1678104277] UIDs valid
+* OK [UIDNEXT 1] Predicted next UID
+* OK [NOMODSEQ] No permanent modsequences
+a OK [READ-ONLY] Select completed.
+a LOGOUT
+* BYE Logging out
+a OK Logout completed.
+Connection closed by foreign host.

@@ -1,0 +1,7 @@
+Content-Type: text/plain; charset=utf-8; format=flowed
+
+Content-Type: application/pkcs7-mime; name="smime.p7m"; smime-type=enveloped-data
+
+
+En la entrega 3 se utiliza directamente el texto para enviar el mensaje, 
+ya que no está encriptado, sin embargo, en la entrega4 utiliza una aplicacion.
