@@ -39,12 +39,16 @@ public class Controller {
 	            simulator.addGroup(groups.getString(i));
 	        }
 
-	        JSONArray laws = jsonInput.getJSONArray("laws");
-	        for (int i = 0; i < laws.length(); i++) {
-	            ForceLaws force = forceLawsFactory.createInstance(laws.getJSONObject(i).getJSONObject("laws"));
-	            simulator.setForceLaws(laws.getJSONObject(i).getString("id"), force);
+	        
+	        if(jsonInput.has("laws")) {
+	        	
+	        	JSONArray laws = jsonInput.getJSONArray("laws");
+		        for (int i = 0; i < laws.length(); i++) {
+		            ForceLaws force = forceLawsFactory.createInstance(laws.getJSONObject(i).getJSONObject("laws"));
+		            simulator.setForceLaws(laws.getJSONObject(i).getString("id"), force);
+		        }
 	        }
-
+	        
 	        JSONArray bodies = jsonInput.getJSONArray("bodies");
 	        for (int i = 0; i < bodies.length(); i++) {
 	            Body body = bodyFactory.createInstance(bodies.getJSONObject(i));
@@ -55,26 +59,59 @@ public class Controller {
 	    public void run(int n, OutputStream out) {
 	        PrintStream p = new PrintStream(out);
 	        
-	        p.println("{ \"states\": [");
+	        p.println("{");
+	        p.println(" \"states\": [");
 
-	        states.clear();
-	        states.add(simulator.getState());
+	        p.print(simulator.getState());
 
 	        for (int i = 0; i < n; i++) {
 	            simulator.advance();
-	            states.add(simulator.getState());
+	            p.println("," + simulator.getState().toString());
 	        }
 
-	        for (int i = 0; i < states.size(); i++) {
-	            if (i > 0) {
-	                p.print(",");
-	            }
-	            p.print(states.get(i).toString());
-	        }
+//	        for (int i = 0; i < states.size(); i++) {
+//	            if (i > 0) {
+//	                p.print(",");
+//	            }
+//	            p.print(states.get(i).toString());
+//	        }
 
 	        p.println("]");
 	        p.println("}");
-
+	       
+	    }
+	    
+	    public void reset() {
+	    	
+	    	simulator.reset();
+	    }
+	    
+	    public void setDeltaTime(double dt) {
+	    	
+	    	simulator.setDeltaTime(dt);
+	    }
+	    
+	    public void addObserver(SimulatorObserver o) {
+	    	
+	    	simulator.addObserver(o);
+	    }
+	    
+	    public void removeObserver(SimulatorObserver o) {
+	    	
+	    	simulator.removeObserver(o);
 	    }
 
+	    public List<JSONObject> getForceLawsInfo(){
+	    	
+	    	return forceLawsFactory.getInfo();
+	    }
+	    
+	    public void setForcesLaws(String gId, JSONObject info) {
+			ForceLaws fl = forceLawsFactory.createInstance(info);
+			simulator.setForceLaws(gId, fl);
+		}
+		
+		public void run(int n) {
+			for(int i=0; i<n; i++) simulator.advance();
+		}
 }

@@ -28,17 +28,4 @@ public class MovingBody extends Body {
         v = newV;
 	}
 	
-    public JSONObject getState() {
-        JSONObject obj = new JSONObject();
-        obj.put("id", this.getId());
-        obj.put("p", this.getPosition().asJSONArray());
-        obj.put("v", this.getVelocity().asJSONArray());
-        obj.put("m", this.getMass());
-        obj.put("f", this.getForce().asJSONArray());
-        return obj;
-    }
-
-    public String toString() {
-        return getState().toString();
-    }
-}
+   }

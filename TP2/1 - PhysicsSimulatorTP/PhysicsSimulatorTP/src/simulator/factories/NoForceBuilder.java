@@ -7,6 +7,8 @@ import simulator.model.NoForce;
 
 public class NoForceBuilder extends Builder<ForceLaws>{
 
+	private JSONObject data = getInfo();
+	
 	public NoForceBuilder() {
 		super("nf", "No Force");
 	}
@@ -19,6 +21,14 @@ public class NoForceBuilder extends Builder<ForceLaws>{
 		f = new NoForce();
 		
 		return f;
+	}
+	
+	
+
+	@Override
+	public JSONObject getInfoData() {
+		JSONObject j = new JSONObject();
+		return j;
 	}
 
 }

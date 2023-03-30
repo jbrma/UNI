@@ -1,6 +1,7 @@
 package simulator.launcher;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.apache.commons.cli.CommandLine;
@@ -15,7 +16,6 @@ import org.json.JSONObject;
 import simulator.control.Controller;
 import simulator.factories.*;
 import simulator.model.*;
-
 
 public class Main {
 
@@ -43,15 +43,13 @@ public class Main {
 		bodyBuilders.add(new MovingBodyBuilder());
 		bodyBuilders.add(new StationaryBodyBuilder());
 		_bodyFactory = new BuilderBasedFactory<Body>(bodyBuilders);
-	
-		
+
 		ArrayList<Builder<ForceLaws>> forceLawsBuilders = new ArrayList<>();
 		forceLawsBuilders.add(new MovingTowardsFixedPointBuilder());
 		forceLawsBuilders.add(new NewtonUniversalGravitationBuilder());
 		forceLawsBuilders.add(new NoForceBuilder());
 		_forceLawsFactory = new BuilderBasedFactory<ForceLaws>(forceLawsBuilders);
-		
-		
+
 	}
 
 	private static void parseArgs(String[] args) {
@@ -69,7 +67,7 @@ public class Main {
 			parseInFileOption(line);
 			parseDeltaTimeOption(line);
 			parseForceLawsOption(line);
-			
+
 			// PRACTICA 1 //
 			parseOutFileOption(line);
 			parseStepsOption(line);
@@ -115,15 +113,16 @@ public class Main {
 				.build());
 
 		// PRACTICA 1 //
-		
+
 		// output
-		cmdLineOptions.addOption(Option.builder("o").longOpt("output").hasArg().
-				desc("Output file, where output is written. Default value: the standard output").build());
-		
+		cmdLineOptions.addOption(Option.builder("o").longOpt("output").hasArg()
+				.desc("Output file, where output is written. Default value: the standard output").build());
+
 		// steps
-		cmdLineOptions.addOption(Option.builder("s").longOpt("steps").hasArg().
-				desc("An integer representing the number of simulation steps. Default value: " + _stepsDefaultValue + ".").build());
-		
+		cmdLineOptions.addOption(Option.builder("s").longOpt("steps").hasArg().desc(
+				"An integer representing the number of simulation steps. Default value: " + _stepsDefaultValue + ".")
+				.build());
+
 		return cmdLineOptions;
 	}
 
@@ -159,7 +158,6 @@ public class Main {
 			throw new ParseException("In batch mode an input file of bodies is required");
 		}
 	}
-	
 
 	private static void parseDeltaTimeOption(CommandLine line) throws ParseException {
 		String dt = line.getOptionValue("dt", _dtimeDefaultValue.toString());
@@ -218,43 +216,47 @@ public class Main {
 			throw new ParseException("Invalid force laws: " + fl);
 		}
 	}
-	
+
 	// PRACTICA 1 //
-	
+
 	private static void parseOutFileOption(CommandLine line) throws ParseException {
-		
+
 		_outFile = line.getOptionValue("o");
-		if (_outFile == null) {
-			throw new ParseException("In batch mode an output file of bodies is required");
-		}
+//		if (_outFile == null) {
+//			
+//			//_outFile = "null";
+//		}
 	}
-	
+
 	private static void parseStepsOption(CommandLine line) throws ParseException {
-		
+
 		try {
 			_steps = Integer.parseInt(line.getOptionValue("s"));
 			assert (_steps > 0);
 		} catch (Exception e) {
 			throw new ParseException("Invalid steps value: " + line.getOptionValue("s"));
 		}
-		
+
 	}
 
 	private static void startBatchMode() throws Exception {
-		
+
 		OutputStream salida;
 		InputStream entrada = new FileInputStream(new File(_inFile));
 		PhysicsSimulator ps = new PhysicsSimulator(_forceLawsFactory.createInstance(_forceLawsInfo), _dtime);
 		Controller control = new Controller(ps, _bodyFactory, _forceLawsFactory);
-		
+
 		if (_outFile == null)
 			salida = System.out;
 		else
 			salida = new FileOutputStream(new File(_outFile));
-		
+
+		// Hacer otro if else ya que el steps no tiene que ser obligatorio, si no
+		// opcional
+
 		control.loadData(entrada);
 		control.run(_steps, salida);
-		
+
 		entrada.close();
 		salida.flush();
 		salida.close();

@@ -26,10 +26,16 @@ public class MovingTowardsFixedPoint implements ForceLaws{
 		
 		Vector2D dir = new Vector2D().direction(); // Direccion auxiliar c - pi
 		
-		for(int i = 0; i < bs.size(); i++) {
-			
-			 dir = c.minus(bs.get(i).getPosition().direction());
-			 bs.get(i).addForce(dir.scale(bs.get(i).getMass() * this.g));
+		
+		for(Body b : bs) {
+
+			 dir = c.minus(b.getPosition().direction());
+			 b.addForce(dir.scale(b.getMass() * this.g));
 		}
+	}
+	
+	public String toString() {
+		
+		return "Moving towards " + c + " with constant acceleration " + g;
 	}
 }

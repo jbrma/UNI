@@ -5,6 +5,7 @@ import org.json.JSONObject;
 public abstract class Builder<T> {
 	private String _typeTag;
 	private String _desc;
+	
 
 	public Builder(String typeTag, String desc) {
 		if (typeTag == null || desc == null || typeTag.length() == 0 || desc.length() == 0)
@@ -12,6 +13,7 @@ public abstract class Builder<T> {
 		
 		_typeTag = typeTag;
 		_desc = desc;
+		
 	}
 
 	public String getTypeTag() {
@@ -22,8 +24,13 @@ public abstract class Builder<T> {
 		JSONObject info = new JSONObject();
 		info.put("type", _typeTag);
 		info.put("desc", _desc);
+		info.put("data", this.getInfoData());
+		
 		return info;
+		
 	}
+	
+	public abstract JSONObject getInfoData();
 
 	@Override
 	public String toString() {

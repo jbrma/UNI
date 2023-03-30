@@ -30,6 +30,7 @@ public class NewtonUniversalGravitation implements ForceLaws {
 					
 					if(bs.get(j).getPosition().distanceTo(bs.get(i).getPosition()) == 0) {
 						
+						bs.get(i).addForce(dir.direction().scale(0));
 					}
 					else {
 					 f = (G * bs.get(i).getMass() * bs.get(j).getMass() / Math.pow(bs.get(i).getPosition().distanceTo(bs.get(j).getPosition()), 2));
@@ -41,5 +42,10 @@ public class NewtonUniversalGravitation implements ForceLaws {
 			 	}
 			}
 		}
+	}
+	
+	public String toString() {
+		
+		return "Newton’s Universal Gravitation with G=" + G;
 	}
 }

@@ -49,4 +49,9 @@ public class StationaryBodyBuilder extends Builder<Body> {
 		return b;
 	}
 
+	@Override
+	public JSONObject getInfoData() {
+		return null;
+	}
+
 }

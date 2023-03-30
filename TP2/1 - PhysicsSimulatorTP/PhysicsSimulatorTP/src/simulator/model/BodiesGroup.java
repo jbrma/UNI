@@ -1,16 +1,18 @@
 package simulator.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
+import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class BodiesGroup {
+public class BodiesGroup{
 
 	private String id;
     private ForceLaws forceLaws;
     private List<Body> bodies;
+    private List<Body> _bodiesRO;
     
 	public BodiesGroup(String _id, ForceLaws _forceLaws) {
 		
@@ -23,6 +25,7 @@ public class BodiesGroup {
         this.id = _id;
         this.forceLaws = _forceLaws;
         this.bodies = new ArrayList<>();
+        this._bodiesRO = Collections.unmodifiableList(bodies);
 	}
 
 		public String getId() {
@@ -51,6 +54,7 @@ public class BodiesGroup {
 	            throw new IllegalArgumentException("Time step must be positive.");
 	        }
 	        bodies.forEach(Body::resetForce);
+	        //bodies.forEach(Body::addForce(this.forceLaws));
 	        forceLaws.apply(bodies);
 	        bodies.forEach(body -> body.advance(dt));
 	    }
@@ -64,6 +68,14 @@ public class BodiesGroup {
 	        return stateJson;
 	    }
 
+	    public String getForceLawsInfo() {
+	        return forceLaws.toString();
+	    }
+	    
+	    public Iterator<Body> Iterator(){
+	    	return _bodiesRO.iterator();
+	    }
+	    
 	    @Override
 	    public String toString() {
 	        return getState().toString();

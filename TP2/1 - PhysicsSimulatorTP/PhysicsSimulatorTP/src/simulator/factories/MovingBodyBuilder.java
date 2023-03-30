@@ -55,4 +55,10 @@ public class MovingBodyBuilder extends Builder<Body> {
 		return b;
 	}
 
+	@Override
+	public JSONObject getInfoData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

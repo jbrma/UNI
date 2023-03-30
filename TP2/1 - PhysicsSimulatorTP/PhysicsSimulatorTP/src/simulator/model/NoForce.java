@@ -10,4 +10,8 @@ public class NoForce implements ForceLaws{
 		//No hace nada
 	}
 
+	public String toString() {
+		
+		return "No Force";
+	}
 }

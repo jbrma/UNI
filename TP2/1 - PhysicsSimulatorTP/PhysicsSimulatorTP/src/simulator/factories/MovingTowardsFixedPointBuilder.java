@@ -21,7 +21,7 @@ public class MovingTowardsFixedPointBuilder extends Builder<ForceLaws>{
 		
 		ForceLaws f;
 		
-		if(data.has("c") && data.has("g")) {
+		if(data.has("c")) {
 			
 			double v1 = data.getJSONArray("c").getDouble(0);
 			double v2 = data.getJSONArray("c").getDouble(1);
@@ -31,21 +31,45 @@ public class MovingTowardsFixedPointBuilder extends Builder<ForceLaws>{
 				throw new IllegalArgumentException("c must be a 2D");
 			}
 			
+			this.c = new Vector2D(v1 , v2);	
 			
-			this.c = new Vector2D(v1 , v2);
-			this.g = data.getDouble("g");
+			if(data.has("g")) {
+				
+				this.g = data.getDouble("g");
+				
+				f = new MovingTowardsFixedPoint(c, g);
+			    
+			}
+			else {
+				f = new MovingTowardsFixedPoint(c, 9.81);
+			}
 		     
-		    f = new MovingTowardsFixedPoint(c, g);
-		    
 		}
 		else {
-			
 			this.c = new Vector2D();
 			
-			f = new MovingTowardsFixedPoint(c, 9.81);
+			if(data.has("g")) {
+				
+				this.g = data.getDouble("g");
+				
+				f = new MovingTowardsFixedPoint(c, g);
+			    
+			}
+			else {
+				f = new MovingTowardsFixedPoint(c, 9.81);
+			}
+			
 		}
 	
 		return f;
+	}
+	
+	@Override
+	public JSONObject getInfoData() {
+		JSONObject j = new JSONObject();
+		j.put("c", "the point towards which bodies move (e.g., [100.0,50.0]");
+		j.put("g", "the length of the acceleration vector (a number)");
+		return j;
 	}
 
 }
