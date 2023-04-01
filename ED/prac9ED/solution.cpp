@@ -32,41 +32,40 @@ bool tratar_caso() {
   // Devuelve true en caso contrario.
 
     int w, h, n, q;
-    while (cin >> w >> h && w != 0 && h != 0) {
+    map<int, string> mapa;
+
+    cin >> w >> h;
+
+    if (w != 0 && h != 0){
         // Leer los tramos
         cin >> n;
-        int x = 1, y = 1;
-        map<pair<int, int>, string> pixel_map;
-        while (n--) {
+        int x = 0;
+        for (int i = 0; i < n; i++) {
             int longitud;
             string color;
             cin >> longitud >> color;
-            for (int i = 0; i < longitud; i++) {
-                pixel_map[{x, y}] = color;
-                x++;
-                if (x > w) {
-                    x = 1;
-                    y++;
-                }
-            }
+            mapa.insert({ longitud + x, color });
+            x += longitud;
         }
-
+    
         // Leer consultas e imprimir
         cin >> q;
-        
-        while (q--) {
+        for (int i = 0; i < q; i++) {
             int x, y;
             cin >> x >> y;
-            cout << pixel_map[{x, y}] << endl;
+            int pixel = w * (y - 1) + x;
+            auto it = mapa.lower_bound(pixel);
+            cout << it->second;
+            cout << endl;
 
         }
         cout << "---" << endl;
+        return true;
     }
 
-    if (w == 0 && h == 0)
+    else
         return false;
 
-    return true;
 }
 
 int main() {
