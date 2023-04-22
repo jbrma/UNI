@@ -1,11 +1,14 @@
 package simulator.view;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import simulator.control.Controller;
 import simulator.model.BodiesGroup;
@@ -14,27 +17,42 @@ import simulator.model.SimulatorObserver;
 
 public class StatusBar extends JPanel implements SimulatorObserver {
 	
-	// TODO Añadir los atributos necesarios, si hace falta …
+	// Añadir los atributos necesarios, si hace falta …
+	
+	private JLabel tiempo;
+	private JLabel grupos;
+	private double t = 0;
+	
 	StatusBar(Controller ctrl) {
-	initGUI();
-	// TODO registrar this como observador
+		initGUI();
+		// TODO registrar this como observador
+		ctrl.addObserver(this);
 	}
+	
 	private void initGUI() {
 		
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.setBorder(BorderFactory.createBevelBorder(1));
-		// TODO Crear una etiqueta de tiempo y añadirla al panel
-		// TODO Crear la etiqueta de número de grupos y añadirla al panel
-		// TODO Utilizar el siguiente código para añadir un separador vertical
-		//
-		// JSeparator s = new JSeparator(JSeparator.VERTICAL);
-		// s.setPreferredSize(new Dimension(10, 20));
-		// this.add(s);
+		
+		tiempo = new JLabel("0.0");
+		this.add(new JLabel("Tiempo: "));
+		this.add(tiempo);
+		
+
+		grupos = new JLabel("0");
+		this.add(new JLabel("Grupos: "));
+		this.add(grupos);
+
+		JSeparator s = new JSeparator(JSeparator.VERTICAL);
+		s.setPreferredSize(new Dimension(10, 20));
+		this.add(s);
+		
 		}
-		// TODO el resto de métodos van aquí…
+		
 	@Override
 	public void onAdvance(Map<String, BodiesGroup> groups, double time) {
-		// TODO Auto-generated method stub
+		tiempo.setText(Double.toString(time));
+		grupos.setText(Integer.toString(groups.size()));
 		
 	}
 	@Override
@@ -44,18 +62,17 @@ public class StatusBar extends JPanel implements SimulatorObserver {
 	}
 	@Override
 	public void onRegister(Map<String, BodiesGroup> groups, double time, double dt) {
-		// TODO Auto-generated method stub
+		tiempo.setText(Double.toString(time));
+		grupos.setText(Integer.toString(groups.size()));
 		
 	}
 	@Override
 	public void onGroupAdded(Map<String, BodiesGroup> groups, BodiesGroup g) {
-		// TODO Auto-generated method stub
-		
+		grupos.setText(Integer.toString(groups.size()));
 	}
 	@Override
 	public void onBodyAdded(Map<String, BodiesGroup> groups, Body b) {
-		// TODO Auto-generated method stub
-		
+		grupos.setText(Integer.toString(groups.size()));
 	}
 	@Override
 	public void onDeltaTimeChanged(double dt) {

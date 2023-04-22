@@ -27,7 +27,6 @@ public class Controller {
 	        this.bodyFactory = bodyFactory;
 	        this.forceLawsFactory = forceLawsFactory;
 	        this.states = new ArrayList<>();
-	        
 	    }
 
 
@@ -38,7 +37,6 @@ public class Controller {
 	        for (int i = 0; i < groups.length(); i++) {
 	            simulator.addGroup(groups.getString(i));
 	        }
-
 	        
 	        if(jsonInput.has("laws")) {
 	        	
@@ -110,6 +108,11 @@ public class Controller {
 			ForceLaws fl = forceLawsFactory.createInstance(info);
 			simulator.setForceLaws(gId, fl);
 		}
+	    
+	    public List<JSONObject> getStates(){
+	    	
+	    	return states;
+	    }
 		
 		public void run(int n) {
 			for(int i=0; i<n; i++) simulator.advance();

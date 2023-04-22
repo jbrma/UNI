@@ -1,0 +1,54 @@
+NSEC
+RSA/SHA-256
+.
+1 week
+20230313
+
+
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> A 130.206.13.20. +dnssec +multi
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 24820
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 4000
+;; QUESTION SECTION:
+;130.206.13.20.		IN A
+
+;; AUTHORITY SECTION:
+.			900 IN SOA a.root-servers.net. nstld.verisign-grs.com. (
+				2023031300 ; serial
+				1800       ; refresh (30 minutes)
+				900        ; retry (15 minutes)
+				604800     ; expire (1 week)
+				86400      ; minimum (1 day)
+				)
+.			900 IN RRSIG SOA 8 0 86400 20230326050000 (
+				20230313040000 951 .
+				nr/xJlB3qxZHzka8IreNhL+y/xOLX1jXctD2kmRUZRB4
+				pceyoMRN263Sue/ZhdR/gXjx06onBVkUiQTiGPUZ165l
+				gxsSef9n08QBcFbJ3vdmTVEI/FXVm2ajWQUIEpf4eR2k
+				/6HRmcvxvU8tWuLb1VG48EVeM0PoizzWrg02DVIfb6kW
+				IMclNKeAxH56QMFVfznEXzU5sgQ5FgBGmN+zIBcXAcb9
+				nJv3o6wudDhPMsAVezGzb/U0VZLdNucOqxOSrkoho3Y1
+				cyjZAUOi0bE9CqqOz+f4OR/kMFUdEVhacpBv/bHXRSt0
+				uMGnUddQ9PDZfhTxYTbneMTyMTYTH83EMg== )
+.			900 IN NSEC aaa. NS SOA RRSIG NSEC DNSKEY
+.			900 IN RRSIG NSEC 8 0 86400 20230326050000 (
+				20230313040000 951 .
+				L6ClXlXgYuHZvyYvFKJa34nuk8X6zqceHxMItFbWZeyn
+				DaVeGJpyTOtir3YiBYmIV9HAVVz75r9PThxT9NBNNCvs
+				7eMNRvC0wOI2WCfFAtKAZFuyT3M21NtvZEgCVYn18EFf
+				HRn4RP3KkR5TOpHjNX7gaVQNERrTnphPic3tmnSxr6J/
+				2l9xHVJoKPyUQkHiWMOpbVCm/GB5PJt75P+Nf7i8XH49
+				jZpuFSYI23P3aTYF45AjKpK1VGEpLO29pnJLljWmBVGD
+				m6HumzcAtdtMZkhWcQDnm3+EvmU3lcn2LnYWyE2SDYue
+				F6lnP398ZhHdjy/3cq19DZTcjABQu+615Q== )
+
+;; Query time: 6 msec
+;; SERVER: 147.96.85.57#53(147.96.85.57)
+;; WHEN: Mon Mar 13 13:02:18 2023
+;; MSG SIZE  rcvd: 714
+

@@ -2,6 +2,7 @@ package simulator.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -165,6 +166,36 @@ class Viewer extends SimulationViewer {
 					autoScale();
 					repaint();
 					break;
+				case 'j':
+					_originX += 10;
+					repaint();
+					break;
+				case 'l':
+					_originX -= 10;
+					repaint();
+					break;
+				case 'i':
+					_originY += 10;
+					repaint();
+					break;
+				case 'm':
+					_originY -= 10;
+					repaint();
+					break;
+				case 'k':
+					_originX = 0;
+					_originY = 0;
+					repaint();
+					break;
+				case 'h':
+					_showHelp = !_showHelp;
+					repaint();
+					break;
+				case 'v':
+					_showVectors = !_showVectors;
+					repaint();
+					break;
+				
 
 				default:
 				}
@@ -212,7 +243,11 @@ class Viewer extends SimulationViewer {
 		_centerY = getHeight() / 2 - _originY;
 
 		// TODO draw red cross at (_centerX,_centerY)
-
+		gr.setColor(Color.RED);
+		gr.drawLine(_centerX+502, _centerY+152, _centerX+500, _centerY+152);
+		gr.drawLine(_centerX+502, _centerY+152, _centerX+502, _centerY+150);
+		gr.drawLine(_centerX+502, _centerY+152, _centerX+504, _centerY+152);
+		gr.drawLine(_centerX+502, _centerY+152, _centerX+502, _centerY+154);
 		// draw bodies
 		drawBodies(gr);
 
@@ -224,7 +259,7 @@ class Viewer extends SimulationViewer {
 
 	private void showHelp(Graphics2D g) {
 		/*
-		 * TODO
+		 * TODO //revisar scaling ratio
 		 * 
 		 * EN: complete to show the following text on the top-left corner:
 		 * 
@@ -244,6 +279,18 @@ class Viewer extends SimulationViewer {
 		 * Selected Group: ...
 		 * 
 		 */
+		
+		g.setColor(Color.RED);
+		g.setFont(new Font("Arial", Font.PLAIN, 14));
+		g.drawString("h: toggle help, v: toggle vectors, +: zoom-in, -: zoom-out, =: fit", 10, 20);
+		g.drawString("l: move right, j: move left, i: move up, m: move down: k: reset", 10, 40);
+		g.drawString("g: show next group", 10, 60);
+		g.drawString("Scaling ratio: " + String.format("%.2f", _scale), 10, 80);
+		if (_selectedGroupIdx == -1) {
+		g.drawString("Selected Group: all", 10, 100);
+		} else {
+		g.drawString("Selected Group: " + _groups.get(_selectedGroupIdx).getId(), 10, 100);
+		}
 	}
 
 	private void drawBodies(Graphics2D g) {
@@ -269,17 +316,46 @@ class Viewer extends SimulationViewer {
 		 * valor de _scale.
 		 * 
 		 */
+		 for (Body b : _bodies) {
+		        if (isVisible(b)) {
+		            g.setColor(_gColor.get(b.getgId()));
+		            // draw the body at (x, y)
+		            int x = (int) (_centerX + b.getPosition().getX() / _scale);
+		            int y = (int) (_centerY + b.getPosition().getY() / _scale);
+		            g.fillOval((int) x, (int) y, 5, 5);
+
+		            // draw the velocity vector
+		            if (_showVectors) {
+		                int vx = (int) (b.getVelocity().getX() / _scale);
+		                int vy = (int) (b.getVelocity().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + vx, y + vy, 1, 1, Color.BLUE, Color.BLUE);
+		            }
+
+		            // draw the force vector
+		            if (_showVectors) {
+		                int fx = (int) (b.getForce().getX() / _scale);
+		                int fy = (int) (b.getForce().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + fx, y + fy, 1, 1, Color.YELLOW, Color.YELLOW);
+		            }
+		        }
+		    }
+		
 	}
+
 
 	private boolean isVisible(Body b) {
 		/*
-		 * TODO 
+		 * 
 		 * 
 		 * EN: return true if _selectedGroup is null or equal to b.getgId() 
 		 * 
 		 * ES: devuelve true si _selectedGroup es null o igual a b.getgId()
 		 *
 		 */
+		
+		if(_selectedGroup == null || _selectedGroup == b.getgId())
+			return true;
+		
 		return false;
 	}
 
@@ -302,13 +378,19 @@ class Viewer extends SimulationViewer {
 	@Override
 	public void addGroup(BodiesGroup g) {
 		/*
-		 * TODO
 		 * 
 		 * EN: add g to _groups and its bodies to _bodies
 		 *
 		 * ES: añadir g a _groups y sus cuerpos a _bodies
 		 * 
 		 */
+		
+		_groups.add(g);
+		
+		for (Body b : g) {
+            _bodies.add(b);
+        }
+		
 		_gColor.put(g.getId(), _colorGen.nextColor()); // assign color to group
 		autoScale();
 		update();
@@ -317,13 +399,13 @@ class Viewer extends SimulationViewer {
 	@Override
 	public void addBody(Body b) {
 		/*
-		 * TODO
 		 * 
 		 *  EN: add b to _bodies
 		 *  
 		 *  ES: añadir b a _bodies
 		 *  
 		 */
+		_bodies.add(b);
 		autoScale();
 		update();
 	}
@@ -331,7 +413,7 @@ class Viewer extends SimulationViewer {
 	@Override
 	public void reset() {
 		/*
-		 * TODO
+		 * 
 		 * 
 		 * EN: clear the group list, bodies list, and the colors map
 		 * 
@@ -339,6 +421,11 @@ class Viewer extends SimulationViewer {
 		 * el mapa de colores
 		 * 
 		 */
+		
+		_groups.clear();
+		_bodies.clear();
+		_gColor.clear();
+		
 		_colorGen.reset(); // reset the color generator
 		_selectedGroupIdx = -1;
 		_selectedGroup = null;

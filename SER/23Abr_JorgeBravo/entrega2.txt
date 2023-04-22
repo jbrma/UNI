@@ -1,0 +1,1 @@
+ipv4     2 tcp      6 431964 ESTABLISHED src=1.1.1.10 dst=1.1.1.1 sport=36153 dport=22 src=192.168.1.11 dst=1.1.1.10 sport=22 dport=36153 [ASSURED] mark=0 zone=0 use=2

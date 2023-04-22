@@ -4,6 +4,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.SwingUtilities;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -16,6 +18,7 @@ import org.json.JSONObject;
 import simulator.control.Controller;
 import simulator.factories.*;
 import simulator.model.*;
+import simulator.view.MainWindow;
 
 public class Main {
 
@@ -24,6 +27,7 @@ public class Main {
 	private final static Integer _stepsDefaultValue = 150;
 	private final static Double _dtimeDefaultValue = 2500.0;
 	private final static String _forceLawsDefaultValue = "nlug";
+	private final static String _ModeDefaultValue = "gui";
 
 	// some attributes to stores values corresponding to command-line parameters
 	//
@@ -32,6 +36,8 @@ public class Main {
 	private static String _inFile = null;
 	private static String _outFile = null;
 	private static JSONObject _forceLawsInfo = null;
+	
+	private static String mode = null;
 
 	// factories
 	private static Factory<Body> _bodyFactory;
@@ -71,7 +77,10 @@ public class Main {
 			// PRACTICA 1 //
 			parseOutFileOption(line);
 			parseStepsOption(line);
-
+			
+			// PRACTICA 2 //
+			parseViewOption(line);
+			
 			// if there are some remaining arguments, then something wrong is
 			// provided in the command line!
 			//
@@ -123,6 +132,12 @@ public class Main {
 				"An integer representing the number of simulation steps. Default value: " + _stepsDefaultValue + ".")
 				.build());
 
+		
+		// PRACTICA 2 //
+		
+		cmdLineOptions.addOption(Option.builder("m").longOpt("mode").hasArg().desc("GUI or console").build());
+		
+		
 		return cmdLineOptions;
 	}
 
@@ -238,6 +253,16 @@ public class Main {
 		}
 
 	}
+	
+	// PRACTICA 2 //
+	
+	private static void parseViewOption(CommandLine line) throws ParseException {
+		mode = line.getOptionValue("m");
+		if (mode == null)
+		{
+			throw new ParseException(_ModeDefaultValue);
+		}
+	}
 
 	private static void startBatchMode() throws Exception {
 
@@ -264,7 +289,18 @@ public class Main {
 
 	private static void start(String[] args) throws Exception {
 		parseArgs(args);
-		startBatchMode();
+		
+		if(mode.equals("batch"))
+			startBatchMode();
+		else if(mode.equals("gui"))
+			startGUIMode();
+	}
+	
+	public static void startGUIMode() throws FileNotFoundException {
+
+		PhysicsSimulator ps = new PhysicsSimulator(_forceLawsFactory.createInstance(_forceLawsInfo), _dtime);
+		Controller ctrl = new Controller(ps,_bodyFactory, _forceLawsFactory);
+		SwingUtilities.invokeLater(() -> new MainWindow(ctrl));
 	}
 
 	public static void main(String[] args) {

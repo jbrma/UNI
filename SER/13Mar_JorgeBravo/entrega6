@@ -1,0 +1,50 @@
+;
+; Start view _default
+;
+;
+; Cache dump of view '_default' (cache _default)
+;
+$DATE 20230313123121
+; answer
+fake.google.com.	19	IN \-ANY ;-$NXDOMAIN
+; google.com. SOA ns1.google.com. dns-admin.google.com. 516001153 900 900 1800 60
+; answer
+www.isc.org.		229	IN CNAME dualstack.osff2.map.fastly.net.
+; answer
+			229	RRSIG	CNAME 13 3 300 20230326172229 (
+					20230224164920 27566 isc.org.
+					A2EjAiywqPo4kUXlZGk/KLUmoLiA3Y2kZzRw
+					QhGVLSns7tjrdk8zA7vWhhFiAu8Y1jELbEPC
+					JyHp2EM9efFawA== )
+; answer
+www.ucm.org.		584	A	185.53.178.50
+;
+; Address database dump
+;
+;
+; Unassociated entries
+;
+;	147.96.85.62 [srtt 8815] [flags 00002000] [ttl 1730]
+;	147.96.85.57 [srtt 86390] [flags 00002000] [ttl 1730]
+;	147.96.85.61 [srtt 13576] [flags 00002000] [ttl 1730]
+;
+; Bad cache
+;
+;
+; Start view _bind
+;
+;
+; Cache dump of view '_bind' (cache _bind)
+;
+$DATE 20230313123121
+;
+; Address database dump
+;
+;
+; Unassociated entries
+;
+;
+; Bad cache
+;
+; Dump complete
+

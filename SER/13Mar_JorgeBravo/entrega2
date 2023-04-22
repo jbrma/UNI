@@ -1,0 +1,122 @@
+;; ANSWER SECTION:
+ietf.org.		150 IN DNSKEY 257 3 5 (
+				AwEAAavjQ1H6pE8FV8LGP0wQBFVL0EM9BRfqxz9p/sZ+
+				8AByqyFHLdZcHoOGF7CgB5OKYMvGOgysuYQloPlwbq7W
+				s5WywbutbXyG24lMWy4jijlJUsaFrS5EvUu4ydmuRc/T
+				GnEXnN1XQkO+waIT4cLtrmcWjoY8Oqud6lDaJdj1cKr2
+				nX1NrmMRowIu3DIVtGbQJmzpukpDVZaYMMAm8M5vz4U2
+				vRCVETLgDoQ7rhsiD127J8gVExjO8B0113jCajbFRcMt
+				UtFTjH4z7jXP2ZzDcXsgpe4LYFuenFQAcRBRlE6oaykH
+				R7rlPqqmw58nIELJUFoMcb/BdRLgbyTeurFlnxs=
+				) ; key id = 45586
+ietf.org.		150 IN DNSKEY 256 3 5 (
+				AwEAAdDECajHaTjfSoNTY58WcBah1BxPKVIHBz4IfLjf
+				qMvium4lgKtKZLe97DgJ5/NQrNEGGQmr6fKvUj67cfrZ
+				UojZ2cGRizVhgkOqZ9scaTVXNuXLM5Tw7VWOVIceeXAu
+				uH2mPIiEV6MhJYUsW6dvmNsJ4XwCgNgroAmXhoMEiWEj
+				BB+wjYZQ5GtZHBFKVXACSWTiCtddHcueOeSVPi5WH94V
+				lubhHfiytNPZLrObhUCHT6k0tNE6phLoHnXWU+6vpsYp
+				z6GhMw/R9BFxW5PdPFIWBgoWk2/XFVRSKG9Lr61b2z1R
+				126xeUwvw46RVy3hanV3vNO7LM5HniqaYclBbhk=
+				) ; key id = 40452
+
+
+
+;; ANSWER SECTION:
+rediris.es.		4407 IN	DNSKEY 257 3 8 (
+				AwEAAb4xrgeYyxIq9QaaNJ6YwYlDylWEuuLLR99Bx1MG
+				qVb0ErcGVDXBfF0ll+p0wecc/4b0ZILFVw7ikeRy1D3V
+				DYOVwrExuSxmhjVuWSec1RYtVHZeSX/ZthV6lRNN9v+q
+				JE44gxef8JDUkNwv885Ieor4Oxc089ypJpGyKBVIMLW2
+				2RkHnrSIf4A4h3gW8IHjvUSWHGtdIQzKDlMuS7YACxyQ
+				RDbms66BIXM4JlhOisE1n6JIf6mhHj8B5qOO1OCil1vI
+				u33i5cjXF8RaDTawHVUm56N1zxSsvKdrod0mbOXPfcy9
+				HbmwfuAefcAYpeW8w2XoiP8/LIT2Il5MtOhfO0qMI3Nb
+				7zldw5i6ZRMaL2NirlzR5W1qRBQk6UTAWKpIJpMXNZ49
+				bj70uhIWA9z0WdZdjVTcxPgyQy7lZLlIb1syZBygpPvZ
+				89Is5T3i/ps37gkHjWkl5Q+J2hN7gjnqZnnEzNwXPqBV
+				CPocwFuPcpicy6tUNB/hXrZyW5IZetMNZi6V2UjhGSwX
+				ExtWRF8Dol+A4YGYn+61KCZEim/M8Lep8QFMDmrl27xs
+				tJ/EiKC+8O3JsAxf84O8l8NX3CKXT/+YdOLJsVYzUbTt
+				BZJbZ8SQT6sHuEFGjWNYleIAhJnOyaj6MZprKkRrVPUb
+				/DglLeSSv3wF9mMvOF45x9vygvs1
+				) ; key id = 18739
+rediris.es.		4407 IN	DNSKEY 256 3 8 (
+				AwEAAe3jUiUzRKagvy4gOUPOLHdrMvWmyn7uGYrrJ0ZL
+				dQVTOah9kyx7eRWwyXGGV2z5fSirrrvA+8gjHu0+9G0D
+				4LUKm1GITtNisMtUdxC5RD2/Ckut9j/YvCNwh12dilS9
+				lqwpcAkVz2b2twh5oFpkYWPA2JPuXRIUBaz5EdQ8UuhK
+				rQX7tTxi0RJjrVBw41FOyPihNNbXvJVJhHCRm1/cB5oN
+				2N/hj8Xu3wDEciOVQ9OObTd9CIE4brmNwBe6rkD0qrcI
+				rtTvagJWNskQBtj+m83fTnX9d4g6s/7jGsWfnWyYhpT+
+				w8s7a9eYGyJmi98otG6zUsaS85DBEib2gaUnPOc=
+				) ; key id = 1134
+
+
+
+;; ANSWER SECTION:
+berkeley.edu.		0 IN DNSKEY 257 3 10 (
+				AwEAAeEAQZGp/64G/wdG2+fAuhvHQJjisGdlygE4hQjA
+				rcLwZgSlj/66R8iIz43nv8kYaIZ6vLVkZ+gIbVdxm3wj
+				ekRQZKck15HrHwlJuekBg7zaaChp7rKcwDR/ic/FOkeO
+				9V5cy7Jc3lRy9NddT/etP1EDEdDSG7qGqOTML1YNfkRt
+				XZXhdMSujwfWq22hEnqKz6z0Fadg/5KboCexVAZPL7e7
+				R/+rvUwW76CyvJa5UAUTtpU/EHtXUNBF/bHC+uIBTaJg
+				3bzR0jmPVV+lV+zb2qsOOl++OEPuFqjZVnPNnzsNFFNc
+				OPnJCnA3NWFNC0pxC4IeXswBGHC5j5NXp/9payc=
+				) ; key id = 38028
+berkeley.edu.		0 IN DNSKEY 256 3 10 (
+				AwEAAZf1NHP+k4Skb2BU+XUscTK/NncZ/c8BiVtNpAlb
+				FQgwdIb/WI/nRU8u04itFTYwStl0CZruyv339fydQfa5
+				/5IMnlyXiVbxLjdqaty9UFvhkgy/MuOKtcLbFGG8mq9T
+				c+tGFWZdoXo1Jra1B5bNIG4ieCYFQOD70BHbn/cQpMDn
+				) ; key id = 25055
+berkeley.edu.		0 IN DNSKEY 257 3 10 (
+				AwEAAb/T3xOztgbS23Wdb+vWdDNqS75lzL9zFUb2Xt7y
+				cBWjP1qFxLQoSUzhRIryi3GhjjzlJh5+F1JndV/ToV1W
+				WB7FZNywIfeZURWq/pFNrBUSKSp31HZbo4awCinn1HNl
+				82X0l+a2u3d0hn4GPeBx6uyaFFk8Hfm3n2NBptSPcZbq
+				R5Za7O613fErRSOa3yiAmUlsp02y6q2H7w6xRJ+eZEbD
+				rNGnXglYweFuF65S9F+A7RD7bTnU9m+GM/1QMG21lgdo
+				QeBo+r0PPqBWsTAgy+KMSWFfvS8IaMArsDre4+uqfCpb
+				H0ljaXZaa9gOIqXbOf3U/mE3sbcLfwXje7ZlGL8=
+				) ; key id = 20949
+berkeley.edu.		0 IN DNSKEY 256 3 10 (
+				AwEAAcxDQveBc4jRur4aGV0XPaz4YJI1l3IvTJSwhqag
+				71bmiaopbPn5q1QoFqRqkmb7k1Iz7esjlVlGl3ClN6W6
+				qZb7aamkYZOaEoKYViAtETfLZWAiL/MJ//2jDKzoTr2C
+				Yztt46uIABxbAkngRi/bqpP+ZdaaY8wEKo5+9RFfO0rb
+				) ; key id = 21896
+
+
+
+
+;; ANSWER SECTION:
+internetsociety.org.	3444 IN	DNSKEY 257 3 13 (
+				mdsswUyr3DPW132mOi8V9xESWE8jTo0dxCjjnopKl+Gq
+				JxpVXckHAeF+KkxLbxILfDLUT0rAK9iUzy1L53eKGQ==
+				) ; key id = 2371
+internetsociety.org.	3444 IN	DNSKEY 256 3 13 (
+				oJMRESz5E4gYzS/q6XDrvU1qMPYIjCWzJaOau8XNEZeq
+				CYKD5ar0IRd8KqXXFJkqmVfRvMGPmM1x8fGAa2XhSA==
+				) ; key id = 34505
+
+
+
+
+;; ANSWER SECTION:
+usp.br.			3394 IN	DNSKEY 256 3 14 (
+				eJWzJFx9CzkDjkS+zF1vZW3MgbTLyE7J1AlOC7FNuDkU
+				7jyq8klSwXxH+7Fjl+Gj45rzhC0Jz0Up+eYBnDyyq1B1
+				DE6WBSr+dwCRK/at097820+ssq3FgriUPCzIipW0
+				) ; key id = 16289
+usp.br.			3394 IN	DNSKEY 257 3 14 (
+				1ZgUV1qIEnW1+Lj1fbkd+5fnkBj1AyO6ofT4rilAqor3
+				SJY/kFYy8L/XhL0STSinfxBO/kz4FZVUZyxn/WbpJ43+
+				CAtE/tCJXGifGs28XOliHl6d3Ytp17EXoGLx+cL2
+				) ; key id = 23907
+
+
+
+
+

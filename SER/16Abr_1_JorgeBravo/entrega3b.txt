@@ -1,0 +1,5 @@
+Max rtt: N/A | Min rtt: N/A | Avg rtt: N/A
+Raw packets sent: 58 (2.436KB) | Rcvd: 0 (0B) | Lost: 58 (100.00%)
+Tx time: 57.62347s | Tx bytes/s: 42.27 | Tx pkts/s: 1.01
+Rx time: 57.62347s | Rx bytes/s: 0.00 | Rx pkts/s: 0.00
+Nping done: 1 IP address pinged in 57.63 seconds

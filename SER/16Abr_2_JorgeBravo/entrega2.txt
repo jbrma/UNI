@@ -1,0 +1,10 @@
+usuario@debian:~$ sudo ip route show cache
+local 192.168.1.11 from 192.168.1.1 dev lo  src 192.168.1.11 
+    cache <local,src-direct>  iif eth1
+local 192.168.1.11 from 192.168.1.10 dev lo  src 192.168.1.11 
+    cache <local,src-direct>  iif eth1
+local 192.168.1.11 from 192.168.2.20 dev lo  src 192.168.1.11 
+    cache <local>  iif eth1
+192.168.2.20 via 192.168.1.10 dev eth1  src 192.168.1.11 
+    cache <redirected> 
+192.168.2.20 from 192.168.1.11 via 192.168.1.10 dev eth1 

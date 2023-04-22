@@ -34,7 +34,7 @@ public class PhysicsSimulator implements Observable<SimulatorObserver> {
 	        this._groupsRO = Collections.unmodifiableMap(groups);
 	        this.currentTime = 0;
 	        this.groupIds = new ArrayList<>();
-	        
+	        this.listaObservadores = new ArrayList<>();
 	}
 
 	public void advance() {
@@ -115,7 +115,7 @@ public class PhysicsSimulator implements Observable<SimulatorObserver> {
 		if(t < 0) {
 			throw new IllegalArgumentException("t is non-positive");
 		}
-		currentTime = t;
+		timePerStep = t;
 			
 		for(SimulatorObserver so : listaObservadores)
 			so.onDeltaTimeChanged(t);

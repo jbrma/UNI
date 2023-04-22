@@ -1,0 +1,27 @@
+a) 130.206.13.20
+b) a.root-servers.net. nstld.verisign-grs.com
+c) ;; ANSWER SECTION:
+rediris.es.		2843	IN	NS	ns15.communitydns.net.
+rediris.es.		2843	IN	NS	scsnms.switch.ch.
+rediris.es.		2843	IN	NS	sun.rediris.es.
+rediris.es.		2843	IN	NS	ns02.fccn.pt.
+rediris.es.		2843	IN	NS	chico.rediris.es.
+
+;; ADDITIONAL SECTION:
+ns15.communitydns.net.	3186	IN	A	194.0.1.15
+ns15.communitydns.net.	3186	IN	AAAA	2001:678:4::f
+scsnms.switch.ch.	15393	IN	A	130.59.31.26
+scsnms.switch.ch.	15393	IN	AAAA	2001:620:0:ff::a7
+sun.rediris.es.		21421	IN	A	199.184.182.1
+sun.rediris.es.		2843	IN	AAAA	2620:171:808::1
+ns02.fccn.pt.		34869	IN	A	193.136.2.228
+chico.rediris.es.	21321	IN	A	162.219.54.2
+chico.rediris.es.	2843	IN	AAAA	2620:10a:80eb::2
+
+d) ;; ANSWER SECTION:
+rediris.es.		29	IN	MX	20 mx03.puc.rediris.es.
+rediris.es.		29	IN	MX	20 mx04.puc.rediris.es.
+
+;; ADDITIONAL SECTION:
+mx03.puc.rediris.es.	29	IN	A	143.55.146.78
+

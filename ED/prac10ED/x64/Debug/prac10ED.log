@@ -1,0 +1,3 @@
+﻿  solution.cpp
+C:\Users\jorge\Documents\Uni - 3ro\ED\prac10ED\solution.cpp(52,17): warning C4834: discarding return value of function with 'nodiscard' attribute
+  prac10ED.vcxproj -> C:\Users\jorge\Documents\Uni - 3ro\ED\prac10ED\x64\Debug\prac10ED.exe

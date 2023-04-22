@@ -7,7 +7,7 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class BodiesGroup{
+public class BodiesGroup implements Iterable<Body>{
 
 	private String id;
     private ForceLaws forceLaws;
@@ -53,10 +53,18 @@ public class BodiesGroup{
 	        if (dt <= 0) {
 	            throw new IllegalArgumentException("Time step must be positive.");
 	        }
-	        bodies.forEach(Body::resetForce);
+	       // bodies.forEach(Body::resetForce);
+	        
+	        for(Body b : bodies ) {
+	        	b.resetForce();
+	        }
+	        
 	        //bodies.forEach(Body::addForce(this.forceLaws));
 	        forceLaws.apply(bodies);
-	        bodies.forEach(body -> body.advance(dt));
+	        //bodies.forEach(body -> body.advance(dt));
+	        for(Body b : bodies ) {
+	        	b.advance(dt);
+	        }
 	    }
 
 	    public JSONObject getState() {
@@ -72,7 +80,8 @@ public class BodiesGroup{
 	        return forceLaws.toString();
 	    }
 	    
-	    public Iterator<Body> Iterator(){
+	    
+	    public Iterator<Body> iterator(){
 	    	return _bodiesRO.iterator();
 	    }
 	    

@@ -1,0 +1,64 @@
+usuario@debian:~$ nmap -sT 192.168.1.11 -p 1-100
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:10 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00044s latency).
+Not shown: 96 closed ports
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+23/tcp open  telnet
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 13.03 seconds
+usuario@debian:~$ sudo nmap -sS 192.168.1.11 -p 1-100
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:11 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00071s latency).
+Not shown: 96 closed ports
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+23/tcp open  telnet
+80/tcp open  http
+MAC Address: 08:00:27:ED:2F:CC (Cadmus Computer Systems)
+
+Nmap done: 1 IP address (1 host up) scanned in 13.03 seconds
+usuario@debian:~$ sudo nmap -sA 192.168.1.11 -p 1-100
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:12 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00051s latency).
+All 100 scanned ports on 192.168.1.11 are unfiltered
+MAC Address: 08:00:27:ED:2F:CC (Cadmus Computer Systems)
+
+Nmap done: 1 IP address (1 host up) scanned in 13.03 seconds
+usuario@debian:~$ sudo nmap -sF 192.168.1.11 -p 1-100
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:13 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00055s latency).
+Not shown: 96 closed ports
+PORT   STATE         SERVICE
+21/tcp open|filtered ftp
+22/tcp open|filtered ssh
+23/tcp open|filtered telnet
+80/tcp open|filtered http
+MAC Address: 08:00:27:ED:2F:CC (Cadmus Computer Systems)
+
+Nmap done: 1 IP address (1 host up) scanned in 14.23 seconds
+usuario@debian:~$ sudo nmap -sN 192.168.1.11 -p 1-100
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:13 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00034s latency).
+Not shown: 96 closed ports
+PORT   STATE         SERVICE
+21/tcp open|filtered ftp
+22/tcp open|filtered ssh
+23/tcp open|filtered telnet
+80/tcp open|filtered http
+MAC Address: 08:00:27:ED:2F:CC (Cadmus Computer Systems)
+
+Nmap done: 1 IP address (1 host up) scanned in 14.23 seconds

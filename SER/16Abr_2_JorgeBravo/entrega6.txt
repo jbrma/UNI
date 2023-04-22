@@ -1,0 +1,29 @@
+usuario@debian:~$ sudo nmap -O 192.168.1.11
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2023-04-08 22:17 CEST
+Nmap scan report for 192.168.1.11
+Host is up (0.00083s latency).
+Not shown: 996 closed ports
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+23/tcp open  telnet
+80/tcp open  http
+MAC Address: 08:00:27:ED:2F:CC (Cadmus Computer Systems)
+No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=6.00%E=4%D=4/8%OT=21%CT=1%CU=33783%PV=Y%DS=1%DC=D%G=Y%M=080027%TM
+OS:=6431CBEC%P=x86_64-unknown-linux-gnu)SEQ(SP=104%GCD=1%ISR=108%TI=Z%CI=I%
+OS:II=I%TS=8)OPS(O1=M5B4ST11NW4%O2=M5B4ST11NW4%O3=M5B4NNT11NW4%O4=M5B4ST11N
+OS:W4%O5=M5B4ST11NW4%O6=M5B4ST11)WIN(W1=3890%W2=3890%W3=3890%W4=3890%W5=389
+OS:0%W6=3890)ECN(R=Y%DF=Y%T=41%W=3908%O=M5B4NNSNW4%CC=Y%Q=)T1(R=Y%DF=Y%T=41
+OS:%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=41%W=0%S=A%A=Z%F=R%O=
+OS:%RD=0%Q=)T5(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=41%
+OS:W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=41%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=
+OS:)U1(R=Y%DF=N%T=41%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%
+OS:DFI=N%T=41%CD=S)
+
+Network Distance: 1 hop
+
+OS detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 24.53 seconds
