@@ -361,8 +361,8 @@ class Viewer extends SimulationViewer {
 	
 							drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
 							
-							g.setColor(Color.BLACK);
-							g.drawString(b.getId(), x+500, y+148);
+
+							g.drawString(b.getId(), (int) b.getPosition().getX(), (int) b.getPosition().getY());
 						}
 	
 					}
