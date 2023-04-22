@@ -197,7 +197,7 @@ class Viewer extends SimulationViewer {
 					break;
 				case 'g':
 					_selectedGroupIdx++;
-					if(_selectedGroupIdx == _groups.size()) {
+					if(_selectedGroupIdx == _groups.size() - 1) {
 						_selectedGroupIdx = -1;
 						_selectedGroup = null;
 					}

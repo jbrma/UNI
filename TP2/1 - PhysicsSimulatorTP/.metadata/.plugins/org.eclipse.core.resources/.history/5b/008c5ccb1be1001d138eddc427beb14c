@@ -199,7 +199,6 @@ class Viewer extends SimulationViewer {
 					_selectedGroupIdx++;
 					if(_selectedGroupIdx == _groups.size()) {
 						_selectedGroupIdx = -1;
-						_selectedGroup = null;
 					}
 					repaint();
 					break;
@@ -263,7 +262,6 @@ class Viewer extends SimulationViewer {
 			showHelp(gr);
 		}
 		
-		update();
 	}
 
 	private void showHelp(Graphics2D g) {
@@ -329,6 +327,7 @@ class Viewer extends SimulationViewer {
 		 * 
 		 */
 		 
+		 
 				for(Body b : _bodies) {
 
 					if(isVisible(b)) {
@@ -339,6 +338,7 @@ class Viewer extends SimulationViewer {
 						Vector2D vel = b.getVelocity();
 						Vector2D f = b.getForce();
 	
+						// Initial Position
 						int x = _centerX + (int) (pos.getX() / _scale);
 						int y = _centerY - (int) (pos.getY() / _scale);
 	

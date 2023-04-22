@@ -199,7 +199,6 @@ class Viewer extends SimulationViewer {
 					_selectedGroupIdx++;
 					if(_selectedGroupIdx == _groups.size()) {
 						_selectedGroupIdx = -1;
-						_selectedGroup = null;
 					}
 					repaint();
 					break;
@@ -262,8 +261,38 @@ class Viewer extends SimulationViewer {
 		if (_showHelp) {
 			showHelp(gr);
 		}
-		
-		update();
+			
+		// TODO draw bodies (with vectors if _showVectors is true)
+			for(Body b : _bodies) {
+
+				Vector2D pos = b.getPosition();
+				Vector2D vel = b.getVelocity();
+				Vector2D f = b.getForce();
+
+				// Initial Position
+				int x = _centerX + (int) (pos.getX() / _scale);
+				int y = _centerY - (int) (pos.getY() / _scale);
+
+				gr.setColor(Color.BLUE);
+				gr.fillOval(x, y, 10, 10);
+
+				if(_showVectors) {
+
+					int ratio = 8;
+
+					int x1 = x + ratio + (int) vel.direction().scale(25).getX();
+					int y1 = y + ratio + (int) vel.direction().scale(25).getY();
+
+					drawLineWithArrow(g, x+5, y+5, x1, y1, 2, 2, Color.GREEN, Color.GREEN);
+
+					int x2 = x + ratio + (int) f.direction().scale(25).getX();
+					int y2 = y + ratio + (int) f.direction().scale(25).getY();
+
+					drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
+
+				}
+
+			}
 	}
 
 	private void showHelp(Graphics2D g) {
@@ -328,40 +357,29 @@ class Viewer extends SimulationViewer {
 		 * valor de _scale.
 		 * 
 		 */
-		 
-				for(Body b : _bodies) {
+		 for (Body b : _bodies) {
+		        if (isVisible(b)) {
+		            g.setColor(_gColor.get(b.getgId()));
+		            // draw the body at (x, y)
+		            int x = (int) (_centerX + b.getPosition().getX() / _scale);
+		            int y = (int) (_centerY + b.getPosition().getY() / _scale);
+		            g.fillOval((int) x, (int) y, 5, 5);
 
-					if(isVisible(b)) {
-						
-						g.setColor(_gColor.get(b.getgId()));
-						
-						Vector2D pos = b.getPosition();
-						Vector2D vel = b.getVelocity();
-						Vector2D f = b.getForce();
-	
-						int x = _centerX + (int) (pos.getX() / _scale);
-						int y = _centerY - (int) (pos.getY() / _scale);
-	
-						g.setColor(Color.BLUE);
-						g.fillOval(x, y, 10, 10);
-	
-						if(_showVectors) {
-	
-							int ratio = 8;
-	
-							int x1 = x + ratio + (int) vel.direction().scale(25).getX();
-							int y1 = y + ratio + (int) vel.direction().scale(25).getY();
-	
-							drawLineWithArrow(g, x+5, y+5, x1, y1, 2, 2, Color.GREEN, Color.GREEN);
-	
-							int x2 = x + ratio + (int) f.direction().scale(25).getX();
-							int y2 = y + ratio + (int) f.direction().scale(25).getY();
-	
-							drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
-						}
-	
-					}
-				}
+		            // draw the velocity vector
+		            if (_showVectors) {
+		                int vx = (int) (b.getVelocity().getX() / _scale);
+		                int vy = (int) (b.getVelocity().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + vx, y + vy, 1, 1, Color.BLUE, Color.BLUE);
+		            }
+
+		            // draw the force vector
+		            if (_showVectors) {
+		                int fx = (int) (b.getForce().getX() / _scale);
+		                int fy = (int) (b.getForce().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + fx, y + fy, 1, 1, Color.YELLOW, Color.YELLOW);
+		            }
+		        }
+		    }
 		
 	}
 
@@ -409,7 +427,6 @@ class Viewer extends SimulationViewer {
 		 */
 		
 		_groups.add(g);
-		
 		
 		for (Body b : g) {
             _bodies.add(b);

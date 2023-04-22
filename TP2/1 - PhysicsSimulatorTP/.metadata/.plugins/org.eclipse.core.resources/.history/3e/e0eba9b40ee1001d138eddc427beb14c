@@ -65,7 +65,7 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			
 			JPanel botones = new JPanel();
 			botones.setAlignmentX(CENTER_ALIGNMENT);
-			
+			mainPanel.add(botones);
 			
 			_forceLawsInfo = _ctrl.getForceLawsInfo();
 			
@@ -153,7 +153,7 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			t.setFillsViewportHeight(true);
 			JScrollPane scrollPane = new JScrollPane(t);
 			mainPanel.add(scrollPane);
-			mainPanel.add(botones);
+			
 			
 			
 			// opciones OK y cancel
@@ -174,19 +174,15 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 							if(_dataTableModel.getValueAt(i, 0) == null || _dataTableModel.getValueAt(i, 1) == null)
 								throw new Exception("No puede haber campos vacíos");
 							
+							
+							data.put(_dataTableModel.getValueAt(i, 0).toString(),
+									_dataTableModel.getValueAt(i, 1).toString());
+							
 							if (_dataTableModel.getValueAt(i, 0).toString().equals("c")) {
-							    if (!_dataTableModel.getValueAt(i, 1).toString().matches("\\[\\s*-?\\d+(\\.\\d+)?\\s*,\\s*-?\\d+(\\.\\d+)?\\s*\\]")) {
+							    if (!_dataTableModel.getValueAt(i, 0).toString().matches("\\[\\s*-?\\d+(\\.\\d+)?\\s*,\\s*-?\\d+(\\.\\d+)?\\s*\\]")) {
 							        throw new Exception("El valor de c debe estar en el formato '[0.0,0.0]' ");
 							    }
-							    else {
-							    	data.put(_dataTableModel.getValueAt(i, 0).toString(),
-											transformaJSONArray(_dataTableModel.getValueAt(i, 1).toString()));
-							    }
-							}
-							else {
-								data.put(_dataTableModel.getValueAt(i, 0).toString(),
-										_dataTableModel.getValueAt(i, 1).toString());
-							}
+							} 
 						}
 						
 						JSONObject json = new JSONObject();
@@ -231,22 +227,6 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			pack();
 			setVisible(true);
 			//return;
-		}
-		
-		public JSONArray transformaJSONArray(String cValue){
-			
-			cValue = cValue.replaceAll("\\s", ""); // Eliminar espacios en blanco
-			cValue = cValue.replaceAll("\\[", ""); // Eliminar el corchete de apertura
-			cValue = cValue.replaceAll("\\]", ""); // Eliminar el corchete de cierre
-			String[] parts = cValue.split(","); // Dividir en dos partes separadas por coma
-			
-			double x = Double.parseDouble(parts[0]);
-			double y = Double.parseDouble(parts[1]);
-			JSONArray cArray = new JSONArray();
-			cArray.put(x);
-			cArray.put(y);
-
-			return cArray;
 		}
 
 		@Override

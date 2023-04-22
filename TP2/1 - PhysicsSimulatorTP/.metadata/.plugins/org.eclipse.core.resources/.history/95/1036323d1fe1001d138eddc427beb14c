@@ -30,7 +30,7 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		
 		setContentPane(mainPanel);
-		_viewer = new Viewer(); 
+		_viewer = new Viewer(); //??
         mainPanel.add(_viewer, BorderLayout.CENTER);
 		
 	addWindowListener(new WindowListener() {

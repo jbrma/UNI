@@ -41,6 +41,9 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 	private JSONObject key;
 	private int selectedIndex;
 	
+	private JComboBox<String> lawsComboBox;
+	private JComboBox<String> groupsComboBox;
+	
 	private int _status = 0;
 	
 		ForceLawsDialog(Frame parent, Controller ctrl) {
@@ -65,60 +68,11 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			
 			JPanel botones = new JPanel();
 			botones.setAlignmentX(CENTER_ALIGNMENT);
-			
+			mainPanel.add(botones);
 			
 			_forceLawsInfo = _ctrl.getForceLawsInfo();
 			
-			
-			// force laws
-			JLabel textoLaws =new JLabel("Force Law: ", JLabel.CENTER);
-			_lawsModel = new DefaultComboBoxModel<>();
-			for (JSONObject info : _forceLawsInfo) {
-			    String desc = info.getString("desc");
-			    _lawsModel.addElement(desc);
-			}
-			JComboBox<String> lawsComboBox = new JComboBox<String>(_lawsModel);
-			lawsComboBox.setVisible(true);
-			selectedIndex = lawsComboBox.getSelectedIndex();
-			lawsComboBox.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					selectedIndex = lawsComboBox.getSelectedIndex();
-					
-					for(JSONObject j : _forceLawsInfo) {
-						String a = j.get("desc").toString();
-						if(lawsComboBox.getSelectedItem().toString().equals(a)) {
-							key = j.getJSONObject("data");
-						}
-					}
-					
-					_dataTableModel.setRowCount(key.length());
-					int p = 0;
-					for(String s : key.keySet()) {
-						String cont = _forceLawsInfo.get(selectedIndex).getJSONObject("data").getString(s);
-						t.setValueAt( s, p, 0 );
-						t.setValueAt(cont, p, 2);
-						p++;
-					}
-					
-				}
-			});
-			botones.add(textoLaws);
-			botones.add(lawsComboBox);
-
-			// groups
-			JLabel textoGroups =new JLabel("Group: ", JLabel.CENTER);
-			_groupsModel = new DefaultComboBoxModel<>();
-			
-			JComboBox<String> groupsComboBox = new JComboBox<String>(_groupsModel);
-			groupsComboBox.setVisible(true);
-			botones.add(textoGroups);
-			botones.add(groupsComboBox);
-			
-			
-			
 			// tabla
 			
 			_dataTableModel = new DefaultTableModel(_headers, 0) {
@@ -153,7 +107,57 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			t.setFillsViewportHeight(true);
 			JScrollPane scrollPane = new JScrollPane(t);
 			mainPanel.add(scrollPane);
-			mainPanel.add(botones);
+			
+			
+			
+			// force laws
+			JLabel textoLaws =new JLabel("Force Law: ", JLabel.CENTER);
+			_lawsModel = new DefaultComboBoxModel<>();
+			for (JSONObject info : _forceLawsInfo) {
+			    String desc = info.getString("desc");
+			    _lawsModel.addElement(desc);
+			}
+			lawsComboBox = new JComboBox<String>(_lawsModel);
+			lawsComboBox.setVisible(true);
+			selectedIndex = lawsComboBox.getSelectedIndex();
+			lawsComboBox.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					selectedIndex = lawsComboBox.getSelectedIndex();
+					
+					for(JSONObject j : _forceLawsInfo) {
+						String a = j.get("desc").toString();
+						if(lawsComboBox.getSelectedItem().toString().equals(a)) {
+							key = j.getJSONObject("data");
+						}
+					}
+					
+					_dataTableModel.setRowCount(key.length());
+					int p = 0;
+					for(String s : key.keySet()) {
+						String cont = _forceLawsInfo.get(selectedIndex).getJSONObject("data").getString(s);
+						t.setValueAt( s, p, 0 );
+						t.setValueAt(cont, p, 2);
+						p++;
+					}
+					
+				}
+			});
+			botones.add(textoLaws);
+			botones.add(lawsComboBox);
+
+			// groups
+			JLabel textoGroups =new JLabel("Group: ", JLabel.CENTER);
+			_groupsModel = new DefaultComboBoxModel<>();
+			
+			groupsComboBox = new JComboBox<String>(_groupsModel);
+			groupsComboBox.setVisible(true);
+			botones.add(textoGroups);
+			botones.add(groupsComboBox);
+			
+			
 			
 			
 			// opciones OK y cancel

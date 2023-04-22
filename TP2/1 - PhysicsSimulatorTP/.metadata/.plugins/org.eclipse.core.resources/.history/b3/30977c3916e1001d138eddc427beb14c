@@ -93,7 +93,7 @@ class Viewer extends SimulationViewer {
 
 			/*
 			 * 
-			 * 
+			 * TODO
 			 * 
 			 * EN: handle keys 'j','l','i','m' to add 10/-10 to _originX/_originY, and then
 			 * call repaint(). This will make the origin point moves left/right/up/down. See
@@ -105,7 +105,7 @@ class Viewer extends SimulationViewer {
 			 * origen se mueva hacia la izquierda/derecha/arriba/abajo. Vea cómo se calculan
 			 * los valores de _centerX y _centerY en el método paintComponent
 			 * 
-			 * 
+			 * TODO
 			 * 
 			 * EN: handle key 'k' to set _originX and _originY to 0, and then call
 			 * repaint(). This will return the origin point to the center of the window.
@@ -113,7 +113,7 @@ class Viewer extends SimulationViewer {
 			 * ES: Gestiona la tecla 'k' para poner _originX y _originY en 0, y luego llame
 			 * a repaint(). Esto hace que el punto de origen sea el centro de la ventana.
 			 * 
-			 * 
+			 * TODO
 			 * 
 			 * EN: handle key 'h' to change the value of _showHelp to !_showHelp, and then
 			 * call repaint(). This will make show/hide the help text - see method
@@ -123,7 +123,7 @@ class Viewer extends SimulationViewer {
 			 * luego llame a repaint(). Esto hará que se muestre/oculte el texto de ayuda -
 			 * ver método paintComponent
 			 * 
-			 * 
+			 * TODO
 			 * 
 			 * EN: handle key 'v' to change the value of _showVectors to !_showVectors, and
 			 * then call repaint(). You will use this variable in drawBodies to decide if to
@@ -195,14 +195,6 @@ class Viewer extends SimulationViewer {
 					_showVectors = !_showVectors;
 					repaint();
 					break;
-				case 'g':
-					_selectedGroupIdx++;
-					if(_selectedGroupIdx == _groups.size()) {
-						_selectedGroupIdx = -1;
-						_selectedGroup = null;
-					}
-					repaint();
-					break;
 				
 
 				default:
@@ -262,13 +254,43 @@ class Viewer extends SimulationViewer {
 		if (_showHelp) {
 			showHelp(gr);
 		}
-		
-		update();
+			
+		// TODO draw bodies (with vectors if _showVectors is true)
+			for(Body b : _bodies) {
+
+				Vector2D pos = b.getPosition();
+				Vector2D vel = b.getVelocity();
+				Vector2D f = b.getForce();
+
+				// Initial Position
+				int x = _centerX + (int) (pos.getX() / _scale);
+				int y = _centerY - (int) (pos.getY() / _scale);
+
+				gr.setColor(Color.BLUE);
+				gr.fillOval(x, y, 10, 10);
+
+				if(_showVectors) {
+
+					int ratio = 8;
+
+					int x1 = x + ratio + (int) vel.direction().scale(25).getX();
+					int y1 = y + ratio + (int) vel.direction().scale(25).getY();
+
+					drawLineWithArrow(g, x+5, y+5, x1, y1, 2, 2, Color.GREEN, Color.GREEN);
+
+					int x2 = x + ratio + (int) f.direction().scale(25).getX();
+					int y2 = y + ratio + (int) f.direction().scale(25).getY();
+
+					drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
+
+				}
+
+			}
 	}
 
 	private void showHelp(Graphics2D g) {
 		/*
-		 * 
+		 * TODO //revisar scaling ratio
 		 * 
 		 * EN: complete to show the following text on the top-left corner:
 		 * 
@@ -290,14 +312,12 @@ class Viewer extends SimulationViewer {
 		 */
 		
 		g.setColor(Color.RED);
-		g.setFont(new Font("Arial", Font.PLAIN, 14));
 		g.drawString("h: toggle help, v: toggle vectors, +: zoom-in, -: zoom-out, =: fit", 10, 20);
 		g.drawString("l: move right, j: move left, i: move up, m: move down: k: reset", 10, 40);
 		g.drawString("g: show next group", 10, 60);
 		g.drawString("Scaling ratio: " + String.format("%.2f", _scale), 10, 80);
 		
 		g.setColor(Color.BLUE);
-		
 		if (_selectedGroupIdx == -1) {
 		g.drawString("Selected Group: all", 10, 100);
 		} else {
@@ -328,40 +348,29 @@ class Viewer extends SimulationViewer {
 		 * valor de _scale.
 		 * 
 		 */
-		 
-				for(Body b : _bodies) {
+		 for (Body b : _bodies) {
+		        if (isVisible(b)) {
+		            g.setColor(_gColor.get(b.getgId()));
+		            // draw the body at (x, y)
+		            int x = (int) (_centerX + b.getPosition().getX() / _scale);
+		            int y = (int) (_centerY + b.getPosition().getY() / _scale);
+		            g.fillOval((int) x, (int) y, 5, 5);
 
-					if(isVisible(b)) {
-						
-						g.setColor(_gColor.get(b.getgId()));
-						
-						Vector2D pos = b.getPosition();
-						Vector2D vel = b.getVelocity();
-						Vector2D f = b.getForce();
-	
-						int x = _centerX + (int) (pos.getX() / _scale);
-						int y = _centerY - (int) (pos.getY() / _scale);
-	
-						g.setColor(Color.BLUE);
-						g.fillOval(x, y, 10, 10);
-	
-						if(_showVectors) {
-	
-							int ratio = 8;
-	
-							int x1 = x + ratio + (int) vel.direction().scale(25).getX();
-							int y1 = y + ratio + (int) vel.direction().scale(25).getY();
-	
-							drawLineWithArrow(g, x+5, y+5, x1, y1, 2, 2, Color.GREEN, Color.GREEN);
-	
-							int x2 = x + ratio + (int) f.direction().scale(25).getX();
-							int y2 = y + ratio + (int) f.direction().scale(25).getY();
-	
-							drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
-						}
-	
-					}
-				}
+		            // draw the velocity vector
+		            if (_showVectors) {
+		                int vx = (int) (b.getVelocity().getX() / _scale);
+		                int vy = (int) (b.getVelocity().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + vx, y + vy, 1, 1, Color.BLUE, Color.BLUE);
+		            }
+
+		            // draw the force vector
+		            if (_showVectors) {
+		                int fx = (int) (b.getForce().getX() / _scale);
+		                int fy = (int) (b.getForce().getY() / _scale);
+		                drawLineWithArrow(g, x, y, x + fx, y + fy, 1, 1, Color.YELLOW, Color.YELLOW);
+		            }
+		        }
+		    }
 		
 	}
 
@@ -409,7 +418,6 @@ class Viewer extends SimulationViewer {
 		 */
 		
 		_groups.add(g);
-		
 		
 		for (Body b : g) {
             _bodies.add(b);

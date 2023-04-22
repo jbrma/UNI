@@ -329,6 +329,7 @@ class Viewer extends SimulationViewer {
 		 * 
 		 */
 		 
+		 
 				for(Body b : _bodies) {
 
 					if(isVisible(b)) {
