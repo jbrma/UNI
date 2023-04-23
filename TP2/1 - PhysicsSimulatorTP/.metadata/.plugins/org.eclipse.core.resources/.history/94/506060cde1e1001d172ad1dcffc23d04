@@ -80,14 +80,6 @@ public class BodiesGroup implements Iterable<Body>{
 	        return forceLaws.toString();
 	    }
 	    
-		public List<Body> getBodies() {
-			List<Body> l = new ArrayList<>();
-			Iterator<Body> it = this.iterator();
-			while(it.hasNext()) {
-				l.add(it.next());
-			}
-			return l;
-		}
 	    
 	    public Iterator<Body> iterator(){
 	    	return _bodiesRO.iterator();

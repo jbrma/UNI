@@ -391,7 +391,7 @@ class Viewer extends SimulationViewer {
 		
 		if(_selectedGroup == null)
 			visible = true;
-		else if(_selectedGroup.equals(grupoID))
+		else if(_selectedGroup == grupoID)
 			visible = true;
 		
 		return visible;

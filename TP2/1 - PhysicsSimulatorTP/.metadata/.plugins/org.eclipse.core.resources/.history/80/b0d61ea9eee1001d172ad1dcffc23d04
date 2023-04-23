@@ -46,6 +46,9 @@ public class ControlPanel extends JPanel implements SimulatorObserver{
 	private JButton botonRun;
 	private JButton botonStop;
 	private JButton botonViewer;
+	private ViewerWindow viewerWindow;
+	
+	
 	private JSpinner steps;
 	private JLabel stringSteps;
 	private JTextField deltatime;
@@ -200,7 +203,7 @@ public class ControlPanel extends JPanel implements SimulatorObserver{
 	
 	private void creaViewer() {
 		
-		new ViewerWindow((JFrame) SwingUtilities.getWindowAncestor(this), _ctrl);
+		viewerWindow = new ViewerWindow((JFrame) SwingUtilities.getWindowAncestor(this), _ctrl);
 		
 	}
 	

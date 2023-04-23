@@ -385,16 +385,13 @@ class Viewer extends SimulationViewer {
 		 * ES: devuelve true si _selectedGroup es null o igual a b.getgId()
 		 *
 		 */
-		boolean visible = false;
-		
-		String grupoID = b.getgId();
 		
 		if(_selectedGroup == null)
-			visible = true;
-		else if(_selectedGroup.equals(grupoID))
-			visible = true;
+			return true;
+		else if(_selectedGroup.toString() != b.getgId().toString())
+			return true;
 		
-		return visible;
+		return false;
 	}
 
 	// calculates a value for scale such that all visible bodies fit in the window

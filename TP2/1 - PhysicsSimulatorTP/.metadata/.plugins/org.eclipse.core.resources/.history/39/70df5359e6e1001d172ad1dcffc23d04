@@ -302,14 +302,14 @@ class Viewer extends SimulationViewer {
 		g.drawString("h: toggle help, v: toggle vectors, +: zoom-in, -: zoom-out, =: fit", 10, 20);
 		g.drawString("l: move right, j: move left, i: move up, m: move down: k: reset", 10, 40);
 		g.drawString("g: show next group", 10, 60);
-		g.drawString("Scaling ratio: " + _scale, 10, 80);
+		g.drawString("Scaling ratio: ", 10, 80);
 		
 		g.setColor(Color.BLUE);
 		
 		if (_selectedGroupIdx == -1) {
 		g.drawString("Selected Group: all", 10, 100);
 		} else {
-		g.drawString("Selected Group: " + _selectedGroup, 10, 100);
+		g.drawString("Selected Group: " + _groups.get(_selectedGroupIdx).getId(), 10, 100);
 		}
 	}
 
@@ -361,13 +361,13 @@ class Viewer extends SimulationViewer {
 							int x1 = x + (int) ( vel.direction().getX() * 15);
 							int y1 = y + (int) ( vel.direction().getY() * 15);
 	
-							drawLineWithArrow(g, x+5, y+5, x1, y1, 5, 5, Color.GREEN, Color.GREEN);
+							drawLineWithArrow(g, x+5, y, x1, y1, 7, 7, Color.GREEN, Color.GREEN);
 	
 							// Fuerza
 							int x2 = x + (int) ( f.direction().getX() * 15);
 							int y2 = y + (int) ( f.direction().getY() * 15);
 	
-							drawLineWithArrow(g, x+5, y+5, x2, y2, 5, 5, Color.RED, Color.RED);
+							drawLineWithArrow(g, x+5, y, x2, y2, 7, 7, Color.RED, Color.RED);
 							
 						}
 					}
@@ -385,16 +385,11 @@ class Viewer extends SimulationViewer {
 		 * ES: devuelve true si _selectedGroup es null o igual a b.getgId()
 		 *
 		 */
-		boolean visible = false;
 		
-		String grupoID = b.getgId();
+		if(_selectedGroup == null || _selectedGroup == b.getgId())
+			return true;
 		
-		if(_selectedGroup == null)
-			visible = true;
-		else if(_selectedGroup.equals(grupoID))
-			visible = true;
-		
-		return visible;
+		return false;
 	}
 
 	// calculates a value for scale such that all visible bodies fit in the window

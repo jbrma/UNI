@@ -71,8 +71,6 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 		} });
 	
 		pack();
-		
-		
 		if (_parent != null)
 		setLocation(
 		_parent.getLocation().x + _parent.getWidth()/2 - getWidth()/2,
@@ -81,34 +79,38 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 	}
 	@Override
 	public void onAdvance(Map<String, BodiesGroup> groups, double time) {
+		for (BodiesGroup bg : groups.values()) {
+            for (Body b : bg) {
+                _viewer.addBody(b);
+            }
+            _viewer.addGroup(bg);
+        }
         _viewer.update();
 	}
 	@Override
 	public void onReset(Map<String, BodiesGroup> groups, double time, double dt) {
 		_viewer.reset();
-		for (BodiesGroup bg : groups.values()) {
-            _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
-                _viewer.addBody(b);
-            }
-        }
+		onAdvance(groups, time);
 	}
 	@Override
 	public void onRegister(Map<String, BodiesGroup> groups, double time, double dt) {
-		for (BodiesGroup bg : groups.values()) {
-            _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
-                _viewer.addBody(b);
-            }
-        }
+		onReset(groups, time, dt);
 	}
 	@Override
 	public void onGroupAdded(Map<String, BodiesGroup> groups, BodiesGroup g) {
+		for (Body b : g) {
+            _viewer.addBody(b);
+        }
         _viewer.addGroup(g);
 	}
 	@Override
 	public void onBodyAdded(Map<String, BodiesGroup> groups, Body b) {
-		_viewer.addBody(b);
+		for (BodiesGroup bg : groups.values()) {
+            if (bg.equals(b)) {
+                _viewer.addBody(b);
+                return;
+            }
+        }
 	}
 	@Override
 	public void onDeltaTimeChanged(double dt) {

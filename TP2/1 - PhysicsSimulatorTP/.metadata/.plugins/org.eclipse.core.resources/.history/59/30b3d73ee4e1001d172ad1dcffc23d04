@@ -261,8 +261,8 @@ class Viewer extends SimulationViewer {
 
 		// draw red cross at (_centerX,_centerY)
 		gr.setColor(Color.RED);
-		gr.drawLine(_centerX-5, _centerY, _centerX+5, _centerY);
-		gr.drawLine(_centerX, _centerY-5,_centerX, _centerY+5);
+		gr.drawLine(_centerX-8, _centerY, _centerX+8, _centerY);
+		gr.drawLine(_centerX, _centerY-8,_centerX, _centerY+8);
 
 		// draw bodies
 		drawBodies(gr);
@@ -302,14 +302,14 @@ class Viewer extends SimulationViewer {
 		g.drawString("h: toggle help, v: toggle vectors, +: zoom-in, -: zoom-out, =: fit", 10, 20);
 		g.drawString("l: move right, j: move left, i: move up, m: move down: k: reset", 10, 40);
 		g.drawString("g: show next group", 10, 60);
-		g.drawString("Scaling ratio: " + _scale, 10, 80);
+		g.drawString("Scaling ratio: ", 10, 80);
 		
 		g.setColor(Color.BLUE);
 		
 		if (_selectedGroupIdx == -1) {
 		g.drawString("Selected Group: all", 10, 100);
 		} else {
-		g.drawString("Selected Group: " + _selectedGroup, 10, 100);
+		g.drawString("Selected Group: " + _groups.get(_selectedGroupIdx).getId(), 10, 100);
 		}
 	}
 
@@ -343,36 +343,39 @@ class Viewer extends SimulationViewer {
 					
 					if(isVisible(b)) {
 						
+						g.setColor(_gColor.get(b.getgId()));
+						
 						Vector2D pos = b.getPosition();
 						Vector2D vel = b.getVelocity();
 						Vector2D f = b.getForce();
 	
 						int x = _centerX + (int) (pos.getX() / _scale);
-						int y = _centerY + (int) (pos.getY() / _scale);
-
-						g.setColor(_gColor.get(b.getgId()));
-						g.fillOval(x, y, 12, 12);
-						g.setColor(Color.BLACK);
-						g.drawString(b.getId(), x, y-5);
+						int y = _centerY - (int) (pos.getY() / _scale);
+	
+						g.setColor(Color.BLUE);
+						g.fillOval(x, y, 10, 10);
 	
 						if(_showVectors) {
 	
-							// Velocidad
-							int x1 = x + (int) ( vel.direction().getX() * 15);
-							int y1 = y + (int) ( vel.direction().getY() * 15);
+							int ratio = 8;
 	
-							drawLineWithArrow(g, x+5, y+5, x1, y1, 5, 5, Color.GREEN, Color.GREEN);
+							int x1 = x + ratio + (int) vel.direction().scale(25).getX();
+							int y1 = y + ratio + (int) vel.direction().scale(25).getY();
 	
-							// Fuerza
-							int x2 = x + (int) ( f.direction().getX() * 15);
-							int y2 = y + (int) ( f.direction().getY() * 15);
+							drawLineWithArrow(g, x+5, y+5, x1, y1, 2, 2, Color.GREEN, Color.GREEN);
 	
-							drawLineWithArrow(g, x+5, y+5, x2, y2, 5, 5, Color.RED, Color.RED);
+							int x2 = x + ratio + (int) f.direction().scale(25).getX();
+							int y2 = y + ratio + (int) f.direction().scale(25).getY();
+	
+							drawLineWithArrow(g, x+5, y+5, x2, y2, 2, 2, Color.RED, Color.RED);
 							
+							g.setColor(Color.BLACK);
+							g.drawString(b.getId(), x+500, y+148);
 						}
+	
 					}
 				}
-		repaint();
+		
 	}
 
 
@@ -385,16 +388,11 @@ class Viewer extends SimulationViewer {
 		 * ES: devuelve true si _selectedGroup es null o igual a b.getgId()
 		 *
 		 */
-		boolean visible = false;
 		
-		String grupoID = b.getgId();
+		if(_selectedGroup == null || _selectedGroup == b.getgId())
+			return true;
 		
-		if(_selectedGroup == null)
-			visible = true;
-		else if(_selectedGroup.equals(grupoID))
-			visible = true;
-		
-		return visible;
+		return false;
 	}
 
 	// calculates a value for scale such that all visible bodies fit in the window
@@ -424,12 +422,17 @@ class Viewer extends SimulationViewer {
 		 */
 		
 		_groups.add(g);
-		_bodies.addAll(g.getBodies());
+		
+		
+		for (Body b : g) {
+            _bodies.add(b);
+        }
+		
 		_gColor.put(g.getId(), _colorGen.nextColor()); // assign color to group
 		autoScale();
 		update();
 	}
- 
+
 	@Override
 	public void addBody(Body b) {
 		/*

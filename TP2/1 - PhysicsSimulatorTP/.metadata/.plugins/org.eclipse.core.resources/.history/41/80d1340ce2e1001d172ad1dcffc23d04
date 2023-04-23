@@ -42,7 +42,7 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 
 		@Override
 		public void windowClosing(WindowEvent e) {
-			 _ctrl.removeObserver(ViewerWindow.this);
+			 _ctrl.removeObserver( (SimulatorObserver) this);
 		}
 
 		@Override
@@ -88,27 +88,30 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 		_viewer.reset();
 		for (BodiesGroup bg : groups.values()) {
             _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
+            for (Body b : bg.getb) {
                 _viewer.addBody(b);
             }
         }
 	}
 	@Override
 	public void onRegister(Map<String, BodiesGroup> groups, double time, double dt) {
-		for (BodiesGroup bg : groups.values()) {
-            _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
-                _viewer.addBody(b);
-            }
-        }
+		onReset(groups, time, dt);
 	}
 	@Override
 	public void onGroupAdded(Map<String, BodiesGroup> groups, BodiesGroup g) {
+		for (Body b : g) {
+            _viewer.addBody(b);
+        }
         _viewer.addGroup(g);
 	}
 	@Override
 	public void onBodyAdded(Map<String, BodiesGroup> groups, Body b) {
-		_viewer.addBody(b);
+		for (BodiesGroup bg : groups.values()) {
+            if (bg.equals(b)) {
+                _viewer.addBody(b);
+                return;
+            }
+        }
 	}
 	@Override
 	public void onDeltaTimeChanged(double dt) {
