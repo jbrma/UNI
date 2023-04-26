@@ -215,9 +215,17 @@ public class ControlPanel extends JPanel implements SimulatorObserver{
 			public void actionPerformed(ActionEvent e) {
 				enableToolBar(false);
 				_stopped = false;
-				delta_time = Double.parseDouble(deltatime.getText());
-		        _ctrl.setDeltaTime(delta_time);
-				run_sim((Integer) steps.getValue());
+				
+				try {
+
+					delta_time = Double.parseDouble(deltatime.getText());
+			        _ctrl.setDeltaTime(delta_time);
+					run_sim((Integer) steps.getValue());
+				}
+				catch(Exception ee){
+					
+					Utils.showErrorMsg("Se ha producido un error");
+				}
 				
 			}
 

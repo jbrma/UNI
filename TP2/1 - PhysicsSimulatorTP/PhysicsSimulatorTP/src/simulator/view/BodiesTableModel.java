@@ -108,13 +108,11 @@ public class BodiesTableModel extends AbstractTableModel implements SimulatorObs
 
 	@Override
 	public void onDeltaTimeChanged(double dt) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onForceLawsChanged(BodiesGroup g) {
-		fireTableDataChanged();
 	}
 
 }

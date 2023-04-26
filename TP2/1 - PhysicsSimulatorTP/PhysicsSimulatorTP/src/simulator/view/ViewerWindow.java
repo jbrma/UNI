@@ -88,7 +88,7 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 		_viewer.reset();
 		for (BodiesGroup bg : groups.values()) {
             _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
+            for (Body b : bg) {
                 _viewer.addBody(b);
             }
         }
@@ -97,7 +97,7 @@ public class ViewerWindow  extends JFrame implements SimulatorObserver {
 	public void onRegister(Map<String, BodiesGroup> groups, double time, double dt) {
 		for (BodiesGroup bg : groups.values()) {
             _viewer.addGroup(bg);
-            for (Body b : bg.getBodies()) {
+            for (Body b : bg) {
                 _viewer.addBody(b);
             }
         }

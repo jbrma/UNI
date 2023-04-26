@@ -55,26 +55,17 @@ public class GroupsTableModel extends AbstractTableModel implements SimulatorObs
             	break;
             case 2:
             	String bodiesInGroup = " ";
-            	JSONArray bodies = _groups.get(rowIndex).getState().getJSONArray("bodies");
-            	
-            	for (int i = 0; i < bodies.length(); i++) {
-            	JSONObject body = bodies.getJSONObject(i);
-            		
-            		bodiesInGroup += body.getString("id") + " ";
-            		
-            	}
+   
+            		for(Body b : _groups.get(rowIndex)) {
+            			bodiesInGroup += b.getId() + " ";
+            		}
+        
             	g = bodiesInGroup;
             	break;
             default:
                 break;
         }
 		return g;
-	}
-
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-
 	}
 
 

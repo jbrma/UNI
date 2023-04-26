@@ -85,24 +85,7 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					
-					selectedIndex = lawsComboBox.getSelectedIndex();
-					
-					for(JSONObject j : _forceLawsInfo) {
-						String a = j.get("desc").toString();
-						if(lawsComboBox.getSelectedItem().toString().equals(a)) {
-							key = j.getJSONObject("data");
-						}
-					}
-					
-					_dataTableModel.setRowCount(key.length());
-					int p = 0;
-					for(String s : key.keySet()) {
-						String cont = _forceLawsInfo.get(selectedIndex).getJSONObject("data").getString(s);
-						t.setValueAt( s, p, 0 );
-						t.setValueAt(cont, p, 2);
-						p++;
-					}
-					
+					valoresTabla(lawsComboBox);
 				}
 			});
 			botones.add(textoLaws);
@@ -133,21 +116,7 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			_dataTableModel.setColumnIdentifiers(_headers);
 			t = new JTable(_dataTableModel);
 			
-			
-			for(JSONObject j : _forceLawsInfo) {
-				String a = j.get("desc").toString();
-				if(lawsComboBox.getSelectedItem().toString().equals(a)) {
-					key = j.getJSONObject("data");
-				}
-			}
-			
-			_dataTableModel.setRowCount(key.length());
-			int p = 0;
-			for(String s : key.keySet()) {					
-				t.setValueAt( s, p, 0 );
-				t.setValueAt(_forceLawsInfo.get(selectedIndex).getJSONObject("data").getString(s.toLowerCase()), p, 2);
-				p++;
-			}
+			valoresTabla(lawsComboBox);
 			
 			t.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			t.setFillsViewportHeight(true);
@@ -169,24 +138,32 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						JSONObject data = new JSONObject();
-						for (int i = 0; i < _dataTableModel.getRowCount(); ++i) {
-							
+						for (int i = 0; i < _dataTableModel.getRowCount(); i++) {	
+
 							if(_dataTableModel.getValueAt(i, 0) == null || _dataTableModel.getValueAt(i, 1) == null)
 								throw new Exception("No puede haber campos vacíos");
 							
-							if (_dataTableModel.getValueAt(i, 0).toString().equals("c")) {
-							    if (!_dataTableModel.getValueAt(i, 1).toString().matches("\\[\\s*-?\\d+(\\.\\d+)?\\s*,\\s*-?\\d+(\\.\\d+)?\\s*\\]")) {
-							        throw new Exception("El valor de c debe estar en el formato '[0.0,0.0]' ");
-							    }
-							    else {
-							    	data.put(_dataTableModel.getValueAt(i, 0).toString(),
-											transformaJSONArray(_dataTableModel.getValueAt(i, 1).toString()));
-							    }
-							}
-							else {
+							String val = (String) _dataTableModel.getValueAt(i, 1).toString();
+							String aux[] = val.split(",");
+							
+							if(aux.length == 1) {	
 								data.put(_dataTableModel.getValueAt(i, 0).toString(),
 										_dataTableModel.getValueAt(i, 1).toString());
 							}
+							else {
+								JSONArray valor = new JSONArray();
+								
+								for(int j = 0; j < aux.length; j++) {
+									try {
+										valor.put(Double.parseDouble(aux[j]));
+									}
+									catch(Exception ee) {
+										throw new Exception("El valor de c debe estar en el formato ' 0,0 ' ");   
+									}
+								}
+								data.put(_dataTableModel.getValueAt(i, 0).toString(), valor);
+							}
+							
 						}
 						
 						JSONObject json = new JSONObject();
@@ -248,6 +225,30 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 
 			return cArray;
 		}
+		
+		public void valoresTabla(JComboBox<String> lawsComboBox) {
+			
+			selectedIndex = lawsComboBox.getSelectedIndex();
+			
+			JSONObject j = _forceLawsInfo.get(selectedIndex);
+			String a = j.get("desc").toString();
+			
+			if(lawsComboBox.getSelectedItem().toString().equals(a)) {
+				key = j.getJSONObject("data");
+			}
+			
+			
+			_dataTableModel.setRowCount(key.length());
+			int p = 0;
+			for(String s : key.keySet()) {
+				String cont = key.getString(s);
+				t.setValueAt( s, p, 0 );
+				t.setValueAt(cont, p, 2);
+				t.setValueAt("", p, 1);
+				p++;
+			}
+			
+		}
 
 		@Override
 		public void onAdvance(Map<String, BodiesGroup> groups, double time) {
@@ -257,7 +258,7 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 
 		@Override
 		public void onReset(Map<String, BodiesGroup> groups, double time, double dt) {
-			
+			_groupsModel.removeAllElements();
 		}
 
 		@Override
@@ -289,4 +290,28 @@ public class ForceLawsDialog extends JDialog implements SimulatorObserver {
 			// TODO Auto-generated method stub
 			
 		}
+		
+
+//		public String getJSON() {
+//			StringBuilder s = new StringBuilder();
+//			s.append('{');
+//			for (int i = 0; i < _dataTableModel.getRowCount(); i++) {
+//				String k = _dataTableModel.getValueAt(i, 0).toString();
+//				String v = _dataTableModel.getValueAt(i, 1).toString();
+//				if (!v.isEmpty()) {
+//					s.append('"');
+//					s.append(k);
+//					s.append('"');
+//					s.append(':');
+//					s.append(v);
+//					s.append(',');
+//				}
+//			}
+//
+//			if (s.length() > 1)
+//				s.deleteCharAt(s.length() - 1);
+//			s.append('}');
+//
+//			return s.toString();
+//		}
 	}

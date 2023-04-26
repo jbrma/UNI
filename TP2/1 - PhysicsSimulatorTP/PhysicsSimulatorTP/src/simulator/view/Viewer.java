@@ -337,9 +337,7 @@ class Viewer extends SimulationViewer {
 		 * 
 		 */
 		 
-				for(int i = 0; i < _bodies.size(); i++) {
-
-					Body b = _bodies.get(i);
+				for(Body b : _bodies) {
 					
 					if(isVisible(b)) {
 						
@@ -348,8 +346,9 @@ class Viewer extends SimulationViewer {
 						Vector2D f = b.getForce();
 	
 						int x = _centerX + (int) (pos.getX() / _scale);
-						int y = _centerY + (int) (pos.getY() / _scale);
+						int y = _centerY - (int) (pos.getY() / _scale);
 
+						
 						g.setColor(_gColor.get(b.getgId()));
 						g.fillOval(x, y, 12, 12);
 						g.setColor(Color.BLACK);
@@ -358,14 +357,14 @@ class Viewer extends SimulationViewer {
 						if(_showVectors) {
 	
 							// Velocidad
-							int x1 = x + (int) ( vel.direction().getX() * 15);
-							int y1 = y + (int) ( vel.direction().getY() * 15);
+							int x1 = x + 5 + (int) ( vel.direction().getX() * 15);
+							int y1 = y + 5 - (int) ( vel.direction().getY() * 15);
 	
 							drawLineWithArrow(g, x+5, y+5, x1, y1, 5, 5, Color.GREEN, Color.GREEN);
 	
 							// Fuerza
-							int x2 = x + (int) ( f.direction().getX() * 15);
-							int y2 = y + (int) ( f.direction().getY() * 15);
+							int x2 = x + 5 + (int) ( f.direction().getX() * 15);
+							int y2 = y + 5 - (int) ( f.direction().getY() * 15);
 	
 							drawLineWithArrow(g, x+5, y+5, x2, y2, 5, 5, Color.RED, Color.RED);
 							
@@ -424,7 +423,6 @@ class Viewer extends SimulationViewer {
 		 */
 		
 		_groups.add(g);
-		_bodies.addAll(g.getBodies());
 		_gColor.put(g.getId(), _colorGen.nextColor()); // assign color to group
 		autoScale();
 		update();

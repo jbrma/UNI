@@ -169,7 +169,7 @@ public class Main {
 
 	private static void parseInFileOption(CommandLine line) throws ParseException {
 		_inFile = line.getOptionValue("i");
-		if (_inFile == null) {
+		if (_inFile == null && mode.equals("batch")) {
 			throw new ParseException("In batch mode an input file of bodies is required");
 		}
 	}
@@ -257,8 +257,8 @@ public class Main {
 	// PRACTICA 2 //
 	
 	private static void parseViewOption(CommandLine line) throws ParseException {
-		mode = line.getOptionValue("m");
-		if (mode == null)
+		mode = line.getOptionValue("m", _ModeDefaultValue);
+		if (!mode.equals("gui") && !mode.equals("batch"))
 		{
 			throw new ParseException(_ModeDefaultValue);
 		}
@@ -297,9 +297,13 @@ public class Main {
 	}
 	
 	public static void startGUIMode() throws FileNotFoundException {
-
+		
 		PhysicsSimulator ps = new PhysicsSimulator(_forceLawsFactory.createInstance(_forceLawsInfo), _dtime);
 		Controller ctrl = new Controller(ps,_bodyFactory, _forceLawsFactory);
+		
+		if(_inFile != null)
+			ctrl.loadData(new FileInputStream(new File(_inFile)));
+		
 		SwingUtilities.invokeLater(() -> new MainWindow(ctrl));
 	}
 
