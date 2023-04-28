@@ -1,0 +1,50 @@
+usuario@debian:~$ cat /etc/ipsec-tools.conf
+#!/usr/sbin/setkey -f
+
+# Vaciar las SAD y SPD
+flush;
+spdflush;
+
+# Definir asociacionnes de seguridad (SAs) para ESP
+# realizando cifrado con claves de 192 bit (algoritmo 3des-cbc)
+# autenticación empleando claves de 128 bits (algoritmo hmac-md5)
+
+add 1.1.1.1 2.2.2.2 esp 0x201 -m tunnel
+-E 3des-cbc 0xbc31312f833dbd8690c0c0d41826367c856734a29895ce0d
+-A hmac-md5 0xf0ce0a6f266d2ee4311f25cb5f675bc0;
+add 2.2.2.2 1.1.1.1 esp 0x301 -m tunnel
+-E 3des-cbc 0xf70c2fd7d8f54f34f8a2cc506290e8e3432cfd2231415ee7
+-A hmac-md5 0xc02b886271159fbb229ba8f3c5e4bb15;
+
+# Definir politicas de seguridad (SPs)
+spdadd 192.168.1.0/24 192.168.2.0/24 any -P out ipsec
+	esp/tunnel/1.1.1.1-2.2.2.2/require;
+spdadd 192.168.2.0/24 192.168.1.0/24 any -P in ipsec
+	esp/tunnel/2.2.2.2-1.1.1.1/require;
+
+
+
+
+usuario@debian:~$ cat /etc/ipsec-tools.conf
+#!/usr/sbin/setkey -f
+
+
+# Vaciar las SAD y SPD
+flush;
+spdflush;
+# Definir asociacionnes de seguridad (SAs) para ESP
+# realizando cifrado con claves de 192 bit (algoritmo 3des-cbc)
+# autenticación empleando claves de 128 bits (algoritmo hmac-md5)
+add 1.1.1.1 2.2.2.2 esp 0x201 -m tunnel
+	-E 3des-cbc 0xbc31312f833dbd8690c0c0d41826367c856734a29895ce0d
+	-A hmac-md5 0xf0ce0a6f266d2ee4311f25cb5f675bc0;
+
+add 2.2.2.2 1.1.1.1 esp 0x301 -m tunnel
+	-E 3des-cbc 0xf70c2fd7d8f54f34f8a2cc506290e8e3432cfd2231415ee7
+	-A hmac-md5 0xc02b886271159fbb229ba8f3c5e4bb15;
+
+# Definir politicas de seguridad (SPs)
+spdadd 192.168.2.0/24 192.168.1.0/24 any -P out ipsec
+	esp/tunnel/2.2.2.2-1.1.1.1/require;
+spdadd 192.168.1.0/24 192.168.2.0/24 any -P in ipsec
+	esp/tunnel/1.1.1.1-2.2.2.2/require;
