@@ -1,0 +1,26 @@
+package simulator.model;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PhysicsSimulator {
+
+	 	private double timePerStep;
+	    private ForceLaws forceLaws;
+	    private Map<String, BodiesGroup> groups;
+	    private double currentTime;
+	
+	public PhysicsSimulator(ForceLaws forceLaws, double timePerStep) {
+		 if (timePerStep <= 0) {
+	            throw new IllegalArgumentException("Time per step must be positive");
+	        }
+	        if (forceLaws == null) {
+	            throw new IllegalArgumentException("Force laws cannot be null");
+	        }
+	        this.timePerStep = timePerStep;
+	        this.forceLaws = forceLaws;
+	        this.groups = new HashMap<>();
+	        this.currentTime = 0;
+	}
+
+}

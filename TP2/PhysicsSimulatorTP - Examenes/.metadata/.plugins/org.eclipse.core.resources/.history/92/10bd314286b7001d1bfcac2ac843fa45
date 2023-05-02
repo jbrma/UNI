@@ -1,0 +1,16 @@
+package simulator.model;
+
+import java.util.Map;
+
+public class PhysicsSimulator {
+
+	 	private double timePerStep;
+	    private ForceLaws forceLaws;
+	    private Map<String, BodiesGroup> groups;
+	    private double currentTime;
+	
+	public PhysicsSimulator(ForceLaws forcelaws, double d) {
+		// TODO Auto-generated constructor stub
+	}
+
+}
