@@ -226,10 +226,13 @@ void ListLinkedDouble::zip(ListLinkedDouble &other) {
     while (curr_this != head && curr_other != other.head) {
         Node* next_this = curr_this->next;
         Node* next_other = curr_other->next;
+
         curr_this->next = curr_other;
         curr_other->prev = curr_this;
+
         curr_other->next = next_this;
         next_this->prev = curr_other;
+
         curr_this = next_this;
         curr_other = next_other;
     }
